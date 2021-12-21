@@ -35,5 +35,5 @@
 #endif
 
 #define NOEXCEPT noexcept
-
+#define INLINE inline
 #define NODISCARD [[nodiscard]]

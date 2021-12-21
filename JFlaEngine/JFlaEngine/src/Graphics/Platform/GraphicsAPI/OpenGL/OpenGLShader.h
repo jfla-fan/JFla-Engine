@@ -14,7 +14,7 @@ namespace Engine::Graphics
 	};
 
 
-	class OpenGLShader : public Shader
+	class OpenGLShader : public Shader<OpenGLShader>
 	{
 	public:
 

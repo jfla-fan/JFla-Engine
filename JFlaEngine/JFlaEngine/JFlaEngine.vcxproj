@@ -233,13 +233,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\ThirdParties\Glad\src\glad.c" />
+    <ClCompile Include="src\Graphics\Platform\GraphicsAPI\GraphicsAPI.cpp" />
+    <ClCompile Include="src\Graphics\Platform\GraphicsAPI\OpenGL\OpenGLVertexBuffer.cpp" />
+    <ClCompile Include="src\Graphics\Platform\GraphicsAPI\OpenGL\OpenGLIndexBuffer.cpp" />
+    <ClCompile Include="src\Graphics\Platform\GraphicsAPI\OpenGL\OpenGLContext.cpp" />
+    <ClCompile Include="src\Graphics\Platform\GraphicsAPI\Buffer.cpp" />
     <ClCompile Include="src\Graphics\Platform\GraphicsAPI\OpenGL\Shader.cpp" />
     <ClCompile Include="src\Graphics\Platform\GraphicsAPI\OpenGL\OpenGLShader.cpp" />
     <ClCompile Include="src\Utils\Cryptography\CRC32.cpp" />
     <ClCompile Include="src\Application\Application.cpp" />
     <ClCompile Include="src\Graphics\GraphicsContext.cpp" />
     <ClCompile Include="src\Graphics\Platform\GraphicsAPI\OpenGL\GLRenderer.cpp" />
-    <ClCompile Include="src\Graphics\Platform\GraphicsAPI\OpenGL\OpenGLAPI.cpp" />
     <ClCompile Include="src\Graphics\SDLWindow.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Math\Color.cpp" />
@@ -248,6 +252,12 @@
     <ClCompile Include="src\Utils\Time\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Common\Traits.h" />
+    <ClInclude Include="src\Graphics\Platform\GraphicsAPI\BufferTraits.h" />
+    <ClInclude Include="src\Graphics\Platform\GraphicsAPI\OpenGL\OpenGLVertexBuffer.h" />
+    <ClInclude Include="src\Graphics\Platform\GraphicsAPI\OpenGL\OpenGLIndexBuffer.h" />
+    <ClInclude Include="src\Graphics\Platform\GraphicsAPI\OpenGL\OpenGLContext.h" />
+    <ClInclude Include="src\Graphics\Platform\GraphicsAPI\Buffer.h" />
     <ClInclude Include="src\Graphics\Platform\GraphicsAPI\OpenGL\Shader.h" />
     <ClInclude Include="src\Graphics\Platform\GraphicsAPI\OpenGL\OpenGLShader.h" />
     <ClInclude Include="src\Utils\Cryptography\CRC32.h" />
@@ -265,7 +275,6 @@
     <ClInclude Include="src\Graphics\GraphicsContext.h" />
     <ClInclude Include="src\Graphics\Platform\GraphicsAPI\GraphicsAPI.h" />
     <ClInclude Include="src\Graphics\Platform\GraphicsAPI\OpenGL\GLRenderer.h" />
-    <ClInclude Include="src\Graphics\Platform\GraphicsAPI\OpenGL\OpenGLAPI.h" />
     <ClInclude Include="src\Graphics\SDLWindow.h" />
     <ClInclude Include="src\Math\Color.h" />
     <ClInclude Include="src\Utils\Time\Timestep.h" />

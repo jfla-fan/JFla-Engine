@@ -46,10 +46,16 @@ namespace Engine::Graphics
 
 	void SDLWindow::OnCreate(const WindowCreateOptions& InOptions)
 	{
-		window = Scope<WindowHandle, DestroyWindowCallback>(
-			SDL_CreateWindow(options.title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-			options.width, options.height, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE), 
-			[](WindowHandle* handle) { SDL_DestroyWindow(handle); });
+		window = Scope<WindowHandle, DestroyWindowCallback>
+		(
+			SDL_CreateWindow
+			(
+				options.title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+				options.width, options.height, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE
+			),
+
+			[](WindowHandle* handle) { SDL_DestroyWindow(handle); }
+		);
 		
 		// set time when the window was created.
 
@@ -80,16 +86,24 @@ namespace Engine::Graphics
 		//const Math::LinearColor orange = Math::Color::ToLinearColor(Math::Color::Orange);
 		const Math::LinearColor& yellow = Math::LinearColor::Yellow;
 
-		glGenBuffers(1, &color);
-		glBindBuffer(GL_ARRAY_BUFFER, color);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * 4, new float[]
+		RECT_COLOR = MakeScoped<OpenGLVertexBuffer>(new float[]
 			{
 				1.0f, 0.0f, 0.0f,	// red
-				0.0f, 1.0f, 0.0f,	// green
-				0.0f, 0.0f, 1.0f,	// blue
-				yellow.R(), yellow.G(), yellow.B()
-			},
-			GL_STATIC_DRAW);
+					0.0f, 1.0f, 0.0f,	// green
+					0.0f, 0.0f, 1.0f,	// blue
+					yellow.R(), yellow.G(), yellow.B()
+			}, sizeof(float) * 3 * 4);
+
+		//glGenBuffers(1, &color);
+		//glBindBuffer(GL_ARRAY_BUFFER, color);
+		//glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * 4, new float[]
+		//	{
+		//		1.0f, 0.0f, 0.0f,	// red
+		//		0.0f, 1.0f, 0.0f,	// green
+		//		0.0f, 0.0f, 1.0f,	// blue
+		//		yellow.R(), yellow.G(), yellow.B()
+		//	},
+		//	GL_STATIC_DRAW);
 		
 		// vertex position attribute
 		glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -97,7 +111,8 @@ namespace Engine::Graphics
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
 
 		// color attribute
-		glBindBuffer(GL_ARRAY_BUFFER, color);
+		
+		RECT_COLOR->Bind();
 		glEnableVertexAttribArray(1);
 		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
 
@@ -108,33 +123,55 @@ namespace Engine::Graphics
 		glGenVertexArrays(1, &rect_vao);
 		
 		// rectangle coordinates
-		glGenBuffers(1, &rect_vbo);
-		glBindBuffer(GL_ARRAY_BUFFER, rect_vbo);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * 4, 
-			new float[] 
+
+		RECT_VBO = OpenGLVertexBuffer::Create(
+			new float[]
 			{
 				0.5f, 0.5f, 0.f,
 				-0.5f, 0.5f, 0.f,
 				-0.5f, -0.5f, 0.f,
 				0.5f, -0.5f, 0.f,
-			}, GL_STATIC_DRAW);
+			},
+			sizeof(float) * 3 * 4
+			);
+
+		/*glGenBuffers(1, &rect_vbo);
+		glBindBuffer(GL_ARRAY_BUFFER, rect_vbo);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * 4,
+			new float[]
+			{
+				0.5f, 0.5f, 0.f,
+				-0.5f, 0.5f, 0.f,
+				-0.5f, -0.5f, 0.f,
+				0.5f, -0.5f, 0.f,
+			}, GL_STATIC_DRAW);*/
 
 		// index buffer
-		glGenBuffers(1, &rect_ibo);
+
+		RECT_IBO = OpenGLIndexBuffer::Create(
+			new uint32[]
+			{
+				0, 1, 2,
+				3, 0, 2
+			},
+			sizeof(uint32) * 6
+		);
+
+		/*glGenBuffers(1, &rect_ibo);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, rect_ibo);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint32) * 6, new uint32[]
 			{
 				0, 1, 2, 
 				3, 0, 2
-			}, GL_STATIC_DRAW);
+			}, GL_STATIC_DRAW);*/
 
 		glBindVertexArray(rect_vao);
 		
-		glBindBuffer(GL_ARRAY_BUFFER, rect_vbo);
+		RECT_VBO->Bind();
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
 
-		glBindBuffer(GL_ARRAY_BUFFER, color);
+		RECT_COLOR->Bind();
 		glEnableVertexAttribArray(1);
 		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
 
@@ -228,11 +265,8 @@ namespace Engine::Graphics
 		
 		glBindVertexArray(rect_vao);
 
-		// this ibo is used for drawing (glDrawElements)
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, rect_ibo);
-
 		//glDrawArrays(GL_POINTS, 0, 3);
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+		GraphicsContext::DrawElements(EGLPrimitiveType::TRIANGLES, *RECT_IBO);
 
 		GraphicsContext::SwapBuffers(window.get());
 	}

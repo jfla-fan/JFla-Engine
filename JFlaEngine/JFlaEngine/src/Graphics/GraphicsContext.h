@@ -2,12 +2,33 @@
 
 #include "../Core.h"
 #include "SDL.h"
-#include "glad/glad.h"
+#include "Platform/GraphicsAPI/GraphicsAPI.h"
 #include "../Math/Color.h"
 
+//#include "Platform/GraphicsAPI/OpenGL/OpenGLContext.h"
 
 namespace Engine::Graphics
 {
+	enum class EGLPrimitiveType
+	{
+		POINTS		= GL_POINTS,
+		TRIANGLES	= GL_TRIANGLES,
+		LINES		= GL_LINES,
+	};
+
+	enum class EGLDataType
+	{
+		BYTE		= GL_BYTE,
+		UBYTE		= GL_UNSIGNED_BYTE,
+		SHORT		= GL_SHORT,
+		USHORT		= GL_UNSIGNED_SHORT,
+		INT32		= GL_INT,
+		UINT32		= GL_UNSIGNED_INT,
+		FIXED		= GL_FIXED,
+		HALF_FLOAT	= GL_HALF_FLOAT,
+		FLOAT		= GL_FLOAT,
+		DOUBLE		= GL_DOUBLE,
+	};
 
 	class GraphicsContext
 	{
@@ -25,18 +46,24 @@ namespace Engine::Graphics
 		static inline void ClearColor(const Math::Color& color) 
 		{ 
 			Math::LinearColor linear = Math::Color::ToLinearColor(color); 
-			glClearColor(linear.R(), linear.G(), linear.B(), linear.A()); 
+			OpenGLContext::ClearColor(linear.R(), linear.G(), linear.B(), linear.A()); 
 		}
 		
-		static inline void ClearColor(const Math::LinearColor& linear) { glClearColor(linear.R(), linear.G(), linear.B(), linear.A()); }
+		static inline void ClearColor(const Math::LinearColor& linear) { OpenGLContext::ClearColor(linear.R(), linear.G(), linear.B(), linear.A()); }
 
-		static inline void Clear() { glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); }
+		static inline void Clear() { OpenGLContext::Clear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); }
 
 		static inline bool UseDoublebuffering() { int32 result; SDL_GL_GetAttribute(SDL_GL_DOUBLEBUFFER, &result); return result; }
 
-		static inline void SetPointSize(float size) { glPointSize(size); }
+		static inline void SetPointSize(float size) { OpenGLContext::PointSize(size); }
 
-		static inline void UseProgram(uint32 program) { glUseProgram(program); }
+		static inline void UseProgram(uint32 program) { OpenGLContext::UseProgram(program); }
+
+		static inline void DrawElements(EGLPrimitiveType primitive, const OpenGLIndexBuffer& indicies)
+		{
+			indicies.Bind();
+			OpenGLContext::DrawElements(GL_ENUM(primitive), indicies.GetSize(), GL_ENUM(EGLDataType::UINT32), nullptr);
+		}
 
 		static inline void Terminate() { SDL_Quit(); }
 

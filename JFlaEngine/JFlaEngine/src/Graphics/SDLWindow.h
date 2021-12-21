@@ -54,6 +54,10 @@ namespace Engine::Graphics
 		uint32 vao, rect_vao, rect_vbo, rect_ibo, vbo, color, vio, vShader, fShader;
 		uint32 program;
 		
+		Scope<OpenGLVertexBuffer>	RECT_VBO;
+		Scope<OpenGLVertexBuffer>	RECT_COLOR;
+		Scope<OpenGLIndexBuffer>			RECT_IBO;
+
 		using DestroyWindowCallback = void(*)(WindowHandle*);
 
 		bool bIsOpened;

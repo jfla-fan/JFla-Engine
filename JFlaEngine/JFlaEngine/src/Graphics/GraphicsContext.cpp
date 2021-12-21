@@ -41,6 +41,7 @@ namespace Engine::Graphics
 		context = SDL_GL_CreateContext(window);
 		renderer = Ref<SDL_Renderer>(SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC),
 			[](SDL_Renderer* renderer) { SDL_DestroyRenderer(renderer); });
+
 		FATAL_ASSERT(gladLoadGLLoader(SDL_GL_GetProcAddress), "Could not initialize glad");	
 	}
 
