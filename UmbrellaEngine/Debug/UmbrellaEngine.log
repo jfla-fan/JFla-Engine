@@ -1,0 +1,208 @@
+﻿  Application.cpp
+  The contents of <ranges> are available only in c++latest mode with concepts support;
+  see https://github.com/microsoft/STL/issues/1814 for details.
+  The contents of <bit> are available only with C++20 or later.
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\PlatformType.h(3,10): fatal error C1083: Cannot open include file: 'SDL_endian.h': No such file or directory
+  GraphicsContext.cpp
+  The contents of <ranges> are available only in c++latest mode with concepts support;
+  see https://github.com/microsoft/STL/issues/1814 for details.
+  The contents of <bit> are available only with C++20 or later.
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\PlatformType.h(3,10): fatal error C1083: Cannot open include file: 'SDL_endian.h': No such file or directory
+  Buffer.cpp
+  The contents of <ranges> are available only in c++latest mode with concepts support;
+  see https://github.com/microsoft/STL/issues/1814 for details.
+  The contents of <bit> are available only with C++20 or later.
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\PlatformType.h(3,10): fatal error C1083: Cannot open include file: 'SDL_endian.h': No such file or directory
+  GraphicsApi.cpp
+  The contents of <ranges> are available only in c++latest mode with concepts support;
+  see https://github.com/microsoft/STL/issues/1814 for details.
+  The contents of <bit> are available only with C++20 or later.
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\PlatformType.h(3,10): fatal error C1083: Cannot open include file: 'SDL_endian.h': No such file or directory
+  GLRenderer.cpp
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Graphics\Platform\GraphicsAPI\OpenGL\GLRenderer.h(5,1): error C2429: language feature 'nested-namespace-definition' requires compiler flag '/std:c++17'
+  OpenGLGpuApi.cpp
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Utils\Time\TimeSpan.h(9,1): error C2429: language feature 'nested-namespace-definition' requires compiler flag '/std:c++17'
+  The contents of <ranges> are available only in c++latest mode with concepts support;
+  see https://github.com/microsoft/STL/issues/1814 for details.
+  The contents of <bit> are available only with C++20 or later.
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\PlatformType.h(3,10): fatal error C1083: Cannot open include file: 'SDL_endian.h': No such file or directory
+  OpenGLAPI.cpp
+  The contents of <ranges> are available only in c++latest mode with concepts support;
+  see https://github.com/microsoft/STL/issues/1814 for details.
+  The contents of <bit> are available only with C++20 or later.
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\PlatformType.h(3,10): fatal error C1083: Cannot open include file: 'SDL_endian.h': No such file or directory
+  OpenGLContext.cpp
+  The contents of <ranges> are available only in c++latest mode with concepts support;
+  see https://github.com/microsoft/STL/issues/1814 for details.
+  The contents of <bit> are available only with C++20 or later.
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\PlatformType.h(3,10): fatal error C1083: Cannot open include file: 'SDL_endian.h': No such file or directory
+  OpenGLIndexBuffer.cpp
+  The contents of <ranges> are available only in c++latest mode with concepts support;
+  see https://github.com/microsoft/STL/issues/1814 for details.
+  The contents of <bit> are available only with C++20 or later.
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\PlatformType.h(3,10): fatal error C1083: Cannot open include file: 'SDL_endian.h': No such file or directory
+  OpenGLPipeline.cpp
+  The contents of <ranges> are available only in c++latest mode with concepts support;
+  see https://github.com/microsoft/STL/issues/1814 for details.
+  The contents of <bit> are available only with C++20 or later.
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\PlatformType.h(3,10): fatal error C1083: Cannot open include file: 'SDL_endian.h': No such file or directory
+  OpenGLShader.cpp
+  The contents of <filesystem> are available only with C++17 or later.
+  The contents of <ranges> are available only in c++latest mode with concepts support;
+  see https://github.com/microsoft/STL/issues/1814 for details.
+  The contents of <bit> are available only with C++20 or later.
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\PlatformType.h(3,10): fatal error C1083: Cannot open include file: 'SDL_endian.h': No such file or directory
+  OpenGLSync.cpp
+  The contents of <ranges> are available only in c++latest mode with concepts support;
+  see https://github.com/microsoft/STL/issues/1814 for details.
+  The contents of <bit> are available only with C++20 or later.
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\PlatformType.h(3,10): fatal error C1083: Cannot open include file: 'SDL_endian.h': No such file or directory
+  OpenGLTexture.cpp
+  The contents of <ranges> are available only in c++latest mode with concepts support;
+  see https://github.com/microsoft/STL/issues/1814 for details.
+  The contents of <bit> are available only with C++20 or later.
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\PlatformType.h(3,10): fatal error C1083: Cannot open include file: 'SDL_endian.h': No such file or directory
+  OpenGLUtils.cpp
+  The contents of <ranges> are available only in c++latest mode with concepts support;
+  see https://github.com/microsoft/STL/issues/1814 for details.
+  The contents of <bit> are available only with C++20 or later.
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\PlatformType.h(3,10): fatal error C1083: Cannot open include file: 'SDL_endian.h': No such file or directory
+  OpenGLVertexArray.cpp
+  The contents of <ranges> are available only in c++latest mode with concepts support;
+  see https://github.com/microsoft/STL/issues/1814 for details.
+  The contents of <bit> are available only with C++20 or later.
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\PlatformType.h(3,10): fatal error C1083: Cannot open include file: 'SDL_endian.h': No such file or directory
+  OpenGLVertexBuffer.cpp
+  The contents of <ranges> are available only in c++latest mode with concepts support;
+  see https://github.com/microsoft/STL/issues/1814 for details.
+  The contents of <bit> are available only with C++20 or later.
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\PlatformType.h(3,10): fatal error C1083: Cannot open include file: 'SDL_endian.h': No such file or directory
+  Shader.cpp
+  The contents of <ranges> are available only in c++latest mode with concepts support;
+  see https://github.com/microsoft/STL/issues/1814 for details.
+  The contents of <bit> are available only with C++20 or later.
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\PlatformType.h(3,10): fatal error C1083: Cannot open include file: 'SDL_endian.h': No such file or directory
+  Texture.cpp
+  The contents of <ranges> are available only in c++latest mode with concepts support;
+  see https://github.com/microsoft/STL/issues/1814 for details.
+  The contents of <bit> are available only with C++20 or later.
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\PlatformType.h(3,10): fatal error C1083: Cannot open include file: 'SDL_endian.h': No such file or directory
+  SDLWindow.cpp
+C:\Games\vcpkg\installed\x86-windows\include\OpenImageIO\detail\farmhash.h(2039,25): warning C4244: 'return': conversion from 'uint64_t' to 'size_t', possible loss of data
+  The contents of <ranges> are available only in c++latest mode with concepts support;
+  see https://github.com/microsoft/STL/issues/1814 for details.
+  The contents of <bit> are available only with C++20 or later.
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\PlatformType.h(3,10): fatal error C1083: Cannot open include file: 'SDL_endian.h': No such file or directory
+  Image.cpp
+  The contents of <ranges> are available only in c++latest mode with concepts support;
+  see https://github.com/microsoft/STL/issues/1814 for details.
+  The contents of <bit> are available only with C++20 or later.
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\PlatformType.h(3,10): fatal error C1083: Cannot open include file: 'SDL_endian.h': No such file or directory
+  Generating Code...
+  Compiling...
+  ImageLoader.cpp
+C:\Games\vcpkg\installed\x86-windows\include\OpenImageIO\filesystem.h(379,17): warning C4251: 'OpenImageIO_v2_2::Filesystem::IOProxy::m_filename': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'OpenImageIO_v2_2::Filesystem::IOProxy'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\xstring(4905): message : see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+C:\Games\vcpkg\installed\x86-windows\include\OpenImageIO\filesystem.h(382,17): warning C4251: 'OpenImageIO_v2_2::Filesystem::IOProxy::m_error': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'OpenImageIO_v2_2::Filesystem::IOProxy'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\xstring(4905): message : see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+C:\Games\vcpkg\installed\x86-windows\include\OpenImageIO\filesystem.h(413,16): warning C4251: 'OpenImageIO_v2_2::Filesystem::IOFile::m_mutex': class 'std::mutex' needs to have dll-interface to be used by clients of class 'OpenImageIO_v2_2::Filesystem::IOFile'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\mutex(87): message : see declaration of 'std::mutex'
+C:\Games\vcpkg\installed\x86-windows\include\OpenImageIO\filesystem.h(443,32): warning C4251: 'OpenImageIO_v2_2::Filesystem::IOVecOutput::m_local_buf': class 'std::vector<unsigned char,std::allocator<unsigned char>>' needs to have dll-interface to be used by clients of class 'OpenImageIO_v2_2::Filesystem::IOVecOutput'
+C:\Games\vcpkg\installed\x86-windows\include\OpenImageIO\filesystem.h(428): message : see declaration of 'std::vector<unsigned char,std::allocator<unsigned char>>'
+C:\Games\vcpkg\installed\x86-windows\include\OpenImageIO\filesystem.h(444,16): warning C4251: 'OpenImageIO_v2_2::Filesystem::IOVecOutput::m_mutex': class 'std::mutex' needs to have dll-interface to be used by clients of class 'OpenImageIO_v2_2::Filesystem::IOVecOutput'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\mutex(87): message : see declaration of 'std::mutex'
+C:\Games\vcpkg\installed\x86-windows\include\OpenImageIO\filesystem.h(476,26): warning C4251: 'OpenImageIO_v2_2::Filesystem::IOMemReader::m_buf': class 'OpenImageIO_v2_2::span<const unsigned char,-1>' needs to have dll-interface to be used by clients of class 'OpenImageIO_v2_2::Filesystem::IOMemReader'
+C:\Games\vcpkg\installed\x86-windows\include\OpenImageIO\span.h(224): message : see declaration of 'OpenImageIO_v2_2::span<const unsigned char,-1>'
+C:\Games\vcpkg\installed\x86-windows\include\OpenImageIO\detail\farmhash.h(2039,25): warning C4244: 'return': conversion from 'uint64_t' to 'size_t', possible loss of data
+  The contents of <ranges> are available only in c++latest mode with concepts support;
+  see https://github.com/microsoft/STL/issues/1814 for details.
+  The contents of <bit> are available only with C++20 or later.
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\PlatformType.h(3,10): fatal error C1083: Cannot open include file: 'SDL_endian.h': No such file or directory
+  ImageUtils.cpp
+C:\Games\vcpkg\installed\x86-windows\include\OpenImageIO\filesystem.h(379,17): warning C4251: 'OpenImageIO_v2_2::Filesystem::IOProxy::m_filename': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'OpenImageIO_v2_2::Filesystem::IOProxy'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\xstring(4905): message : see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+C:\Games\vcpkg\installed\x86-windows\include\OpenImageIO\filesystem.h(382,17): warning C4251: 'OpenImageIO_v2_2::Filesystem::IOProxy::m_error': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'OpenImageIO_v2_2::Filesystem::IOProxy'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\xstring(4905): message : see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+C:\Games\vcpkg\installed\x86-windows\include\OpenImageIO\filesystem.h(413,16): warning C4251: 'OpenImageIO_v2_2::Filesystem::IOFile::m_mutex': class 'std::mutex' needs to have dll-interface to be used by clients of class 'OpenImageIO_v2_2::Filesystem::IOFile'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\mutex(87): message : see declaration of 'std::mutex'
+C:\Games\vcpkg\installed\x86-windows\include\OpenImageIO\filesystem.h(443,32): warning C4251: 'OpenImageIO_v2_2::Filesystem::IOVecOutput::m_local_buf': class 'std::vector<unsigned char,std::allocator<unsigned char>>' needs to have dll-interface to be used by clients of class 'OpenImageIO_v2_2::Filesystem::IOVecOutput'
+C:\Games\vcpkg\installed\x86-windows\include\OpenImageIO\filesystem.h(428): message : see declaration of 'std::vector<unsigned char,std::allocator<unsigned char>>'
+C:\Games\vcpkg\installed\x86-windows\include\OpenImageIO\filesystem.h(444,16): warning C4251: 'OpenImageIO_v2_2::Filesystem::IOVecOutput::m_mutex': class 'std::mutex' needs to have dll-interface to be used by clients of class 'OpenImageIO_v2_2::Filesystem::IOVecOutput'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\mutex(87): message : see declaration of 'std::mutex'
+C:\Games\vcpkg\installed\x86-windows\include\OpenImageIO\filesystem.h(476,26): warning C4251: 'OpenImageIO_v2_2::Filesystem::IOMemReader::m_buf': class 'OpenImageIO_v2_2::span<const unsigned char,-1>' needs to have dll-interface to be used by clients of class 'OpenImageIO_v2_2::Filesystem::IOMemReader'
+C:\Games\vcpkg\installed\x86-windows\include\OpenImageIO\span.h(224): message : see declaration of 'OpenImageIO_v2_2::span<const unsigned char,-1>'
+C:\Games\vcpkg\installed\x86-windows\include\OpenImageIO\detail\farmhash.h(2039,25): warning C4244: 'return': conversion from 'uint64_t' to 'size_t', possible loss of data
+  The contents of <ranges> are available only in c++latest mode with concepts support;
+  see https://github.com/microsoft/STL/issues/1814 for details.
+  The contents of <bit> are available only with C++20 or later.
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\PlatformType.h(3,10): fatal error C1083: Cannot open include file: 'SDL_endian.h': No such file or directory
+  OIIOUtils.cpp
+C:\Games\vcpkg\installed\x86-windows\include\OpenImageIO\filesystem.h(379,17): warning C4251: 'OpenImageIO_v2_2::Filesystem::IOProxy::m_filename': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'OpenImageIO_v2_2::Filesystem::IOProxy'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\xstring(4905): message : see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+C:\Games\vcpkg\installed\x86-windows\include\OpenImageIO\filesystem.h(382,17): warning C4251: 'OpenImageIO_v2_2::Filesystem::IOProxy::m_error': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'OpenImageIO_v2_2::Filesystem::IOProxy'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\xstring(4905): message : see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+C:\Games\vcpkg\installed\x86-windows\include\OpenImageIO\filesystem.h(413,16): warning C4251: 'OpenImageIO_v2_2::Filesystem::IOFile::m_mutex': class 'std::mutex' needs to have dll-interface to be used by clients of class 'OpenImageIO_v2_2::Filesystem::IOFile'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\mutex(87): message : see declaration of 'std::mutex'
+C:\Games\vcpkg\installed\x86-windows\include\OpenImageIO\filesystem.h(443,32): warning C4251: 'OpenImageIO_v2_2::Filesystem::IOVecOutput::m_local_buf': class 'std::vector<unsigned char,std::allocator<unsigned char>>' needs to have dll-interface to be used by clients of class 'OpenImageIO_v2_2::Filesystem::IOVecOutput'
+C:\Games\vcpkg\installed\x86-windows\include\OpenImageIO\filesystem.h(428): message : see declaration of 'std::vector<unsigned char,std::allocator<unsigned char>>'
+C:\Games\vcpkg\installed\x86-windows\include\OpenImageIO\filesystem.h(444,16): warning C4251: 'OpenImageIO_v2_2::Filesystem::IOVecOutput::m_mutex': class 'std::mutex' needs to have dll-interface to be used by clients of class 'OpenImageIO_v2_2::Filesystem::IOVecOutput'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\mutex(87): message : see declaration of 'std::mutex'
+C:\Games\vcpkg\installed\x86-windows\include\OpenImageIO\filesystem.h(476,26): warning C4251: 'OpenImageIO_v2_2::Filesystem::IOMemReader::m_buf': class 'OpenImageIO_v2_2::span<const unsigned char,-1>' needs to have dll-interface to be used by clients of class 'OpenImageIO_v2_2::Filesystem::IOMemReader'
+C:\Games\vcpkg\installed\x86-windows\include\OpenImageIO\span.h(224): message : see declaration of 'OpenImageIO_v2_2::span<const unsigned char,-1>'
+  Main.cpp
+  The contents of <ranges> are available only in c++latest mode with concepts support;
+  see https://github.com/microsoft/STL/issues/1814 for details.
+  The contents of <bit> are available only with C++20 or later.
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\PlatformType.h(3,10): fatal error C1083: Cannot open include file: 'SDL_endian.h': No such file or directory
+  Color.cpp
+  The contents of <ranges> are available only in c++latest mode with concepts support;
+  see https://github.com/microsoft/STL/issues/1814 for details.
+  The contents of <bit> are available only with C++20 or later.
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\PlatformType.h(3,10): fatal error C1083: Cannot open include file: 'SDL_endian.h': No such file or directory
+  Memory.cpp
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\BaseTypes.h(7,1): error C2429: language feature 'nested-namespace-definition' requires compiler flag '/std:c++17'
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\BaseTypes.h(44,23): error C2039: 'byte': is not a member of 'std'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\cstddef(22): message : see declaration of 'std'
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\BaseTypes.h(44,27): error C2061: syntax error: identifier 'byte'
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\BaseTypes.h(100,2): error C2039: 'byte': is not a member of 'J::Platform'
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\BaseTypes.h(6): message : see declaration of 'J::Platform'
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\BaseTypes.h(100,2): error C2873: 'byte': symbol cannot be used in a using-declaration
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Memory\Types.h(7,1): error C2429: language feature 'nested-namespace-definition' requires compiler flag '/std:c++17'
+  The contents of <bit> are available only with C++20 or later.
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\PlatformType.h(3,10): fatal error C1083: Cannot open include file: 'SDL_endian.h': No such file or directory
+  MemoryUtils.cpp
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\BaseTypes.h(7,1): error C2429: language feature 'nested-namespace-definition' requires compiler flag '/std:c++17'
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\BaseTypes.h(44,23): error C2039: 'byte': is not a member of 'std'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\cstddef(22): message : see declaration of 'std'
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\BaseTypes.h(44,27): error C2061: syntax error: identifier 'byte'
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\BaseTypes.h(100,2): error C2039: 'byte': is not a member of 'J::Platform'
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\BaseTypes.h(6): message : see declaration of 'J::Platform'
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\BaseTypes.h(100,2): error C2873: 'byte': symbol cannot be used in a using-declaration
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Memory\Types.h(7,1): error C2429: language feature 'nested-namespace-definition' requires compiler flag '/std:c++17'
+  The contents of <bit> are available only with C++20 or later.
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\PlatformType.h(3,10): fatal error C1083: Cannot open include file: 'SDL_endian.h': No such file or directory
+  Float16.cpp
+  The contents of <bit> are available only with C++20 or later.
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\PlatformType.h(3,10): fatal error C1083: Cannot open include file: 'SDL_endian.h': No such file or directory
+  Float32.cpp
+  The contents of <bit> are available only with C++20 or later.
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\PlatformType.h(3,10): fatal error C1083: Cannot open include file: 'SDL_endian.h': No such file or directory
+  ResourceContainer.cpp
+  The contents of <ranges> are available only in c++latest mode with concepts support;
+  see https://github.com/microsoft/STL/issues/1814 for details.
+  The contents of <bit> are available only with C++20 or later.
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\PlatformType.h(3,10): fatal error C1083: Cannot open include file: 'SDL_endian.h': No such file or directory
+  CRC32.cpp
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Utils\Cryptography\CRC32.h(5,1): error C2429: language feature 'nested-namespace-definition' requires compiler flag '/std:c++17'
+  FileSystem.cpp
+  The contents of <ranges> are available only in c++latest mode with concepts support;
+  see https://github.com/microsoft/STL/issues/1814 for details.
+  The contents of <bit> are available only with C++20 or later.
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Common\PlatformType.h(3,10): fatal error C1083: Cannot open include file: 'SDL_endian.h': No such file or directory
+  Timer.cpp
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Utils\Time\Timer.h(6,1): error C2429: language feature 'nested-namespace-definition' requires compiler flag '/std:c++17'
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Utils\Time\Timer.cpp(6,1): error C2429: language feature 'nested-namespace-definition' requires compiler flag '/std:c++17'
+  TimeSpan.cpp
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Utils\Time\TimeSpan.h(9,1): error C2429: language feature 'nested-namespace-definition' requires compiler flag '/std:c++17'
+C:\Users\ДНС\Documents\Projects\VisualStudioProjects\GameEngine\UmbrellaEngine\Utils\Time\TimeSpan.cpp(6,1): error C2429: language feature 'nested-namespace-definition' requires compiler flag '/std:c++17'
+  Generating Code...
