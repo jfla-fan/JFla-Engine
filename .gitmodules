@@ -1,0 +1,18 @@
+[submodule "ThirdParties/boost"]
+	path = ThirdParties/boost
+	url = https://github.com/boostorg/boost
+[submodule "ThirdParties/oiio"]
+	path = ThirdParties/oiio
+	url = https://github.com/OpenImageIO/oiio
+[submodule "ThirdParties/imgui"]
+	path = ThirdParties/imgui
+	url = https://github.com/ocornut/imgui
+[submodule "ThirdParties/SDL"]
+	path = ThirdParties/SDL
+	url = https://github.com/libsdl-org/SDL
+[submodule "ThirdParties/GLM"]
+	path = ThirdParties/GLM
+	url = https://github.com/g-truc/glm
+[submodule "ThirdParties/ImGuizmo"]
+	path = ThirdParties/ImGuizmo
+	url = https://github.com/jfla-fan/ImGuizmo

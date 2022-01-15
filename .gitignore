@@ -8,3 +8,11 @@ JFlaEngine/JFlaEngine/Intermediate/
 JFlaEngine/ThirdParties/
 
 JFlaEngine/.vs/
+
+UmbrellaEngine.vcxproj
+
+UmbrellaEngine.vcxproj.filters
+
+.vs/
+
+ThirdParties/SDL2/
