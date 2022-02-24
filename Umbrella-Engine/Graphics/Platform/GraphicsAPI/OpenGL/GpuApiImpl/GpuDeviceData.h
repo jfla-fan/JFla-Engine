@@ -5,24 +5,8 @@
 
 
 
-namespace J::Graphics::GpuApi
-{
-	struct TextureRef;
-	struct ShaderRef;
-	struct BufferRef;
-	struct VertexArrayRef;
 
-	struct SBufferDesc;
-	struct SGpuFenceDesc;
-
-	struct SBufferData;
-
-	enum class EDeviceType : uint8;
-	enum class EGPUVendor : uint8;
-}
-
-
-namespace J::Graphics::GpuApi
+namespace UE::Graphics::GpuApi
 {
 	using namespace Utils;
 
@@ -32,6 +16,11 @@ namespace J::Graphics::GpuApi
 		// #TODO What else can GPU support ?! That's a good question!
 
 		bool bRayTracingSupport;
+
+		SDeviceCapabilities()
+			: bRayTracingSupport( false )
+		{
+		}
 	};
 
 
@@ -45,11 +34,15 @@ namespace J::Graphics::GpuApi
 		SDeviceData()
 			: bDeviceInitDone( false )
 			, bDeviceShutDone( false )
-			, eDevice(EDeviceType::UNKNOWN)
-			, eGPUVendor(EGPUVendor::UNKNOWN)
+			, eDevice( EDeviceType::UNKNOWN )
+			, eGPUVendor( EGPUVendor::UNKNOWN )
+			, Capabilities()
 			, BufferResources( AccessMutex )
+			, TextureResources( AccessMutex )
+			, InputLayouts( AccessMutex )
+			, RenderStateResources( AccessMutex )
+			, ShaderResources( AccessMutex )
 			//, VertexArrayResources( AccessMutex )
-			//, ShaderResources( AccessMutex )
 			//, TextureResources( AccessMutex )
 		{
 		}
@@ -71,15 +64,16 @@ namespace J::Graphics::GpuApi
 
 
 		ResourceContainer< BufferRef,		SBufferData >		BufferResources;
+		ResourceContainer< RenderStateRef,  SRenderStateData >	RenderStateResources;
 		//ResourceContainer< VertexArrayRef,	JVertexArray >		VertexArrayResources;
-		//ResourceContainer< ShaderRef,		JShader >			ShaderResources;
-		//ResourceContainer< TextureRef,		JTexture >			TextureResources;
+		ResourceContainer< ShaderRef,		SShaderData >		ShaderResources;
+		ResourceContainer< TextureRef,		STextureData >		TextureResources;
+		ResourceContainer< InputLayoutRef,  SInputLayoutData >  InputLayouts;
 		// ResourceContainer< GPU FENCES
 
 		TMutex													AccessMutex;
 	};
 
-
-	SDeviceData* GDeviceData = NullPtr;
+	extern SDeviceData* GDeviceData;
 
 }

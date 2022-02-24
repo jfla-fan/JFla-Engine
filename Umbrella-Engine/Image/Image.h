@@ -6,12 +6,12 @@
 
 
 
-namespace J::Utils
+namespace UE::Utils
 {
-	using namespace J::Math;
+	using namespace UE::Math;
 	
 	class Image;
-	using ImagePtr = Ref<Image>;
+	using ImagePtr = Ref< Image >;
 
 
 	// Pixel format
@@ -40,7 +40,7 @@ namespace J::Utils
 	/**
 	 * 2D Image class.
 	 */
-	class Image : std::enable_shared_from_this<Image>
+	class Image : std::enable_shared_from_this< Image >
 	{
 	private:
 
@@ -49,7 +49,7 @@ namespace J::Utils
 		 * 
 		 * #todo Should use custom allocator (memory pool) ??
 		 */
-		JVector<byte>	Source;
+		JVector< byte >	Source;
 
 		/* Image width. */
 		uint32			SizeX;
@@ -81,7 +81,7 @@ namespace J::Utils
 		 * \param InSizeY		- The image height.
 		 * \param InImageFormat	- The image format.
 		 */
-		Image(uint32 InSizeX, uint32 InSizeY, ERawImageFormat InImageFormat);
+		Image( uint32 InSizeX, uint32 InSizeY, ERawImageFormat InImageFormat );
 
 		/**
 		 * Create non-initialized image object with allocated memory of a calculated size.
@@ -89,7 +89,7 @@ namespace J::Utils
 		 * \param InSize		- The image size.
 		 * \param InImageFormat	- The image format.
 		 */
-		Image(VectorUInt2 InSize, ERawImageFormat InImageFormat);
+		Image( VectorUInt2 InSize, ERawImageFormat InImageFormat );
 
 		/**
 		 * Creates image object initialized with data from [InData, InData + size] range,
@@ -101,7 +101,7 @@ namespace J::Utils
 		 * \param InSizeY		- The Image height
 		 * \param InImageFormat	- The Image format
 		 */
-		Image(const byte* InData, uint32 InSizeX, uint32 InSizeY, ERawImageFormat InImageFormat);
+		Image( const byte* InData, uint32 InSizeX, uint32 InSizeY, ERawImageFormat InImageFormat );
 
 		/**
 		 * Creates image object initialized with data from [InData, InData + size] range,
@@ -111,15 +111,15 @@ namespace J::Utils
 		 * \param InSize		- The image width and height.
 		 * \param InImageFormat	- The image format.
 		 */
-		Image(const byte* InData, VectorUInt2 InSize, ERawImageFormat InImageFormat);
+		Image( const byte* InData, VectorUInt2 InSize, ERawImageFormat InImageFormat );
 
-		Image(const Image& another);
+		Image( const Image& another );
 
-		Image(Image&& another) NOEXCEPT;
+		Image( Image&& another ) NOEXCEPT;
 
-		Image& operator = (const Image& another);
+		Image& operator = ( const Image& another );
 
-		Image& operator = (Image&& another) NOEXCEPT;
+		Image& operator = ( Image&& another ) NOEXCEPT;
 
 		~Image();
 
@@ -140,11 +140,11 @@ namespace J::Utils
 		 * \param Data
 		 * \param Size
 		 */
-		void SetData(byte* Data, SIZE_T Size);
+		void SetData( byte* Data, SIZE_T Size );
 
-		void MarkInitialized(bool initialized = true);
+		void MarkInitialized( bool initialized = true );
 
-		void PrintImageMetaData(std::ostream& os);
+		void PrintImageMetaData( std::ostream& os );
 
 	public:
 		
@@ -158,11 +158,11 @@ namespace J::Utils
 
 		uint32			GetHeight() const;
 
-		SIZE_T			GetBytesSize() const;
+		uint32			GetBytesSize() const;
 
 		uint32			GetChannelsCount() const;
 
-		uint32			GetBytesPerChannel() const;	// GetBytesPerPixel() / GetChannelsCount();
+		uint8			GetBytesPerChannel() const;	// GetBytesPerPixel() / GetChannelsCount();
 
 		ERawImageFormat	GetFormat() const;
 

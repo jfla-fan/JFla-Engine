@@ -4,7 +4,7 @@
 
 
 
-namespace J::Graphics
+namespace UE::Graphics
 {
 
 	//struct OpenGLSync final : public SGpuFence

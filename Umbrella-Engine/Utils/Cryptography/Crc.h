@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace J::Crypto
+namespace UE::Crypto
 {
 
 

@@ -3,7 +3,7 @@
 #include <string>
 
 
-namespace J
+namespace UE
 {
 
 	enum class EEventCategory : uint8
@@ -16,7 +16,7 @@ namespace J
 		Keyboard	= MouseButton << 1,
 	};
 
-	DECLARE_ENUM_FLAG_OPERATIONS(EEventCategory)
+	DECLARE_ENUM_FLAG_OPERATIONS( EEventCategory )
 
 	class EventBase
 	{

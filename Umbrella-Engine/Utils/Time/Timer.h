@@ -2,7 +2,7 @@
 
 
 
-namespace J::Utils
+namespace UE::Utils
 {
 
 	class Timer

@@ -5,17 +5,17 @@
 
 
 
-namespace J::Platform::Details
+namespace UE::Platform::Details
 {
 	constexpr bool GIsFloat32Bits = (sizeof(float) == 4);
 }
 
-#define IS_BASE_FLOAT_TYPE_32_BITS (J::Platform::Details::GIsFloat32Bits)
+#define IS_BASE_FLOAT_TYPE_32_BITS (UE::Platform::Details::GIsFloat32Bits)
 
 
-namespace J::Platform
+namespace UE::Platform
 {
-	static_assert(IS_BASE_FLOAT_TYPE_32_BITS);
+	static_assert( IS_BASE_FLOAT_TYPE_32_BITS );
 
 	using float16 = Float16;
 
@@ -24,12 +24,12 @@ namespace J::Platform
 	static NullPtrType NullPtr = nullptr;
 }
 
-namespace J
+namespace UE
 {
 
-	DECLARE_PLATFORM_TYPE(float16);
+	DECLARE_PLATFORM_TYPE( float16 );
 
-	DECLARE_PLATFORM_TYPE(float32);
+	DECLARE_PLATFORM_TYPE( float32 );
 
-	DECLARE_PLATFORM_TYPE(NullPtr);
+	DECLARE_PLATFORM_TYPE( NullPtr );
 }

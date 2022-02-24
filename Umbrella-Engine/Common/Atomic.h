@@ -3,10 +3,10 @@
 #include <cstddef>
 
 
-namespace J::Atomic
+namespace UE::Atomic
 {
-	template<class _Ty>
-	using TAtomic		= std::atomic<_Ty>;
+	template< class _Ty >
+	using TAtomic		= std::atomic< _Ty >;
 
 	using TAtomic8		= std::atomic_int8_t;
 	using TAtomic8U		= std::atomic_uint8_t;
@@ -23,7 +23,7 @@ namespace J::Atomic
 	using TAtomicChar	= std::atomic_char;
 	using TAtomicUchar	= std::atomic_uchar;
 
-	using TAtomicByte	= TAtomic<std::byte>;
+	using TAtomicByte	= TAtomic< std::byte >;
 
 	using TAtomicBool	= std::atomic_bool;
 	

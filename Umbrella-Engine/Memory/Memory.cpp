@@ -1,7 +1,7 @@
 #include "Memory.h"
 
 
-namespace J::Memory
+namespace UE::Memory
 {
 
 

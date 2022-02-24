@@ -2,7 +2,7 @@
 #include "../GpuApi.h"
 
 
-namespace J::Graphics
+namespace UE::Graphics
 {
 	// Buffer Builder
 
@@ -16,9 +16,8 @@ namespace J::Graphics
 
 	// Buffer Class
 
-	OpenGLIndexBuffer::OpenGLIndexBuffer( uint32* indices, uint32 size, EBufferAccessBits access, const JString& debugName )
+	OpenGLIndexBuffer::OpenGLIndexBuffer( uint32* indices, uint32 size, EBufferAccessBits access, const String& debugName )
 		: Size( size )
-		, Offset( 0 )
 		, eAccess( access )
 		, DebugName( debugName )
 	{
@@ -28,7 +27,7 @@ namespace J::Graphics
 			EBufferUsage::STATIC_DRAW,
 			0,
 			debugName,
-			sizeof(uint32) * size,
+			sizeof( uint32 ) * size,
 			indices,
 			access
 		};
@@ -43,38 +42,34 @@ namespace J::Graphics
 		GpuApi::SafeRelease( this->Descriptor );
 	}
 
-	OpenGLIndexBuffer::OpenGLIndexBuffer(OpenGLIndexBuffer&& another) NOEXCEPT
+	OpenGLIndexBuffer::OpenGLIndexBuffer( OpenGLIndexBuffer&& another ) NOEXCEPT
 	{
 
 		this->Descriptor	= another.Descriptor;
 		this->Size			= another.Size;
-		this->Offset		= another.Offset;
 		this->eAccess		= another.eAccess;
 		this->DebugName		= std::move( another.DebugName );
 	
 		another.Descriptor	= resource_type::Null();
 		another.Size		= 0;
-		another.Offset		= 0;
 		another.eAccess		= EBufferAccessBits::NONE;
 
 	}
 
-	OpenGLIndexBuffer& OpenGLIndexBuffer::operator = (OpenGLIndexBuffer&& another) NOEXCEPT
+	OpenGLIndexBuffer& OpenGLIndexBuffer::operator = ( OpenGLIndexBuffer&& another ) NOEXCEPT
 	{
-		if (this == &another)
+		if ( this == &another )
 		{
 			return *this;
 		}
 
 		this->Descriptor = another.Descriptor;
 		this->Size = another.Size;
-		this->Offset = another.Offset;
 		this->eAccess = another.eAccess;
-		this->DebugName = std::move(another.DebugName);
+		this->DebugName = std::move( another.DebugName );
 
 		another.Descriptor = resource_type::Null();
 		another.Size = 0;
-		another.Offset = 0;
 		another.eAccess = EBufferAccessBits::NONE;
 
 
@@ -83,11 +78,11 @@ namespace J::Graphics
 
 	INLINE void OpenGLIndexBuffer::Bind() const
 	{
-		GpuApi::BindBuffer(this->Descriptor);
+		GpuApi::BindBuffer( this->Descriptor );
 	}
 
 	INLINE void OpenGLIndexBuffer::Unbind() const
 	{
-		GpuApi::UnbindBuffer(this->Descriptor);
+		GpuApi::UnbindBuffer( this->Descriptor );
 	}
 }

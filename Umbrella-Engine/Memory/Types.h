@@ -3,10 +3,10 @@
 
 
 
-namespace J::Memory
+namespace UE::Memory
 {
-	using i8 = int8;
-	using u8 = uint8;
+	using i8  = int8;
+	using u8  = uint8;
 
 	using i16 = int16;
 	using u16 = uint16;

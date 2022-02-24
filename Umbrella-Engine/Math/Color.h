@@ -3,7 +3,7 @@
 
 
 
-namespace J::Math
+namespace UE::Math
 {
 	class LinearColor;
 	class Color;
@@ -35,10 +35,10 @@ namespace J::Math
 
 		explicit Color()
 		{
-			Memory::Memcpy(White.GetValue(), this->color.channels, sizeof(this->color.channels));
+			Memory::Memcpy( White.GetValue(), this->color.channels, sizeof( this->color.channels ) );
 		}
 
-		Color(uint8 InRed, uint8 InGreen, uint8 InBlue, uint8 InAlpha = 255)
+		Color( uint8 InRed, uint8 InGreen, uint8 InBlue, uint8 InAlpha = 255 )
 		{
 			color.r = InRed;
 			color.g = InGreen;
@@ -103,7 +103,7 @@ namespace J::Math
 			color.a = 1.f;
 		}
 
-		LinearColor(float InR, float InG, float InB, float InA = 1.0f)
+		LinearColor( float InR, float InG, float InB, float InA = 1.0f )
 		{
 			color.r = InR;
 			color.g = InG;

@@ -8,12 +8,13 @@
 #include "OpenGL/OpenGLTexture.h"
 #include "OpenGL/OpenGLVertexBuffer.h"
 #include "OpenGL/OpenGLIndexBuffer.h"
-#include "OpenGL/OpenGLVertexArray.h"
+#include "InputLayout.h"
+#include "RenderState.h"
 
 
 // #TODO DO WE NEED THIS FILE?
 
-namespace J::Graphics
+namespace UE::Graphics
 {
 	enum class EGraphicsAPI : uint8
 	{

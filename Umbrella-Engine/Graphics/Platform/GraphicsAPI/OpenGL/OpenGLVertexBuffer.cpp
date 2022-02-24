@@ -3,7 +3,7 @@
 
 
 
-namespace J::Graphics
+namespace UE::Graphics
 {
 	INLINE Scope < OpenGLVertexBuffer >
 	BufferBuilder < OpenGLVertexBuffer, _Vertex_buffer_tag > ::
@@ -19,7 +19,7 @@ namespace J::Graphics
 
 	OpenGLVertexBuffer::OpenGLVertexBuffer( float* vertices, uint32 size,
 											EBufferType type, EBufferUsage usage,
-											EBufferAccessBits access, const JString& debugName )
+											EBufferAccessBits access, const String& debugName )
 		: eType( type )
 		, eUsage( usage )
 		, Size( size )
@@ -54,7 +54,6 @@ namespace J::Graphics
 		this->eUsage		= another.eUsage;
 		this->eAccess		= another.eAccess;
 		this->Size			= another.Size;
-		this->Offset		= another.Offset;
 		this->DebugName		= std::move( another.DebugName );
 
 		another.Descriptor	= resource_type::Null();	// GpuApi::Invalidate?
@@ -62,7 +61,6 @@ namespace J::Graphics
 		another.eUsage		= GpuApi::EBufferUsage::NONE;
 		another.eAccess		= GpuApi::EBufferAccessBits::NONE;
 		another.Size		= 0;
-		another.Offset		= 0;
 	}
 
 	OpenGLVertexBuffer& OpenGLVertexBuffer::operator = (OpenGLVertexBuffer&& another) NOEXCEPT
@@ -77,7 +75,6 @@ namespace J::Graphics
 		this->eUsage		= another.eUsage;
 		this->eAccess		= another.eAccess;
 		this->Size			= another.Size;
-		this->Offset		= another.Offset;
 		this->DebugName		= std::move(another.DebugName);
 
 		another.Descriptor	= resource_type::Null();	// GpuApi::Invalidate?
@@ -85,7 +82,6 @@ namespace J::Graphics
 		another.eUsage		= GpuApi::EBufferUsage::NONE;
 		another.eAccess		= GpuApi::EBufferAccessBits::NONE;
 		another.Size		= 0;
-		another.Offset		= 0;
 	
 		return *this;
 	}

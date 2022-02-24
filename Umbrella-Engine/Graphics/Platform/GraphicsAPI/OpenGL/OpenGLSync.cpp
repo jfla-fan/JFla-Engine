@@ -3,7 +3,7 @@
 
 
 
-namespace J::Graphics
+namespace UE::Graphics
 {
 
     //void OpenGLSync::Lock()

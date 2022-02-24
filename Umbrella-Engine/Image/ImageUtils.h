@@ -5,7 +5,7 @@
 
 
 
-namespace J::Utils::Details
+namespace UE::Utils::Details
 {
 	/// use as ImageFormatToOIITable[(uint32)ERawImageFormat]
 	static OIIO::TypeDesc ImageFormatToOIIOTable[] =
@@ -30,7 +30,7 @@ namespace J::Utils::Details
 
 	};
 
-	static std::map<std::string, ERawImageFormat> StringToImageFormatMap
+	static HashMap< String, ERawImageFormat > StringToImageFormatMap
 	{
 
 		{ "L8", ERawImageFormat::L8 },
@@ -53,14 +53,14 @@ namespace J::Utils::Details
 
 	};
 
-	OIIO::TypeDesc ToOIIOImageDataType(ERawImageFormat Format);
+	OIIO::TypeDesc ToOIIOImageDataType( ERawImageFormat Format );
 
-	ERawImageFormat ToImageDataType(const OIIO::ImageSpec& Spec);
+	ERawImageFormat ToImageDataType( const OIIO::ImageSpec& Spec );
 		
 	// others as well
 }
 
-namespace J::Utils {
+namespace UE::Utils {
 
 	class ImageUtils
 	{
@@ -72,7 +72,7 @@ namespace J::Utils {
 		 * \param InFrom	- The image to convert from.
 		 * \param InFormat	- The format to convert to.
 		 */
-		static void Convert(Ref<Image> InFrom, ERawImageFormat InFormat);
+		static void Convert( Ref< Image > InFrom, ERawImageFormat InFormat );
 
 		/**
 		 * Copies a given image into a new one with the specified image data format.
@@ -81,7 +81,7 @@ namespace J::Utils {
 		 * \param InTo		- The image to convert to.
 		 * \param InFormat	- The format to convert to.
 		 */
-		static void Copy(Ref<Image> InFrom, Image& InTo, ERawImageFormat InFormat);
+		static void Copy( Ref< Image > InFrom, Image& InTo, ERawImageFormat InFormat );
 
 		/**
 		 * Resizes the given image using a simple average filter.
@@ -91,18 +91,18 @@ namespace J::Utils {
 		 * \param InDestSize
 		 * \param InFormat
 		 */
-		static void Resize(Ref<Image> InFrom, Image& InDest, VectorUInt2 InDestSize, ERawImageFormat InDestFormat);
+		static void Resize( Ref< Image > InFrom, Image& InDest, VectorUInt2 InDestSize, ERawImageFormat InDestFormat );
 
 
-		static void VerticalFlip(Ref<Image> InFrom, Image& InDest);
+		static void VerticalFlip( Ref< Image > InFrom, Image& InDest );
 
-		static void HorizontalFlip(Ref<Image> InFrom, Image& InDest);
+		static void HorizontalFlip( Ref< Image > InFrom, Image& InDest );
 
-		static void Rotate(Ref<Image> InFrom, Image& InDest, float InAngle);
+		static void Rotate( Ref<Image > InFrom, Image& InDest, float InAngle );
 
-		static void PixelSum(Ref<Image> InFirstOperand, Ref<Image> InSecondOperand, Image& InDest);
+		static void PixelSum( Ref< Image > InFirstOperand, Ref< Image > InSecondOperand, Image& InDest );
 
-		static void PixelSum(Ref<Image> InFirstOperand, Span<float> InSecondOperand, Image& InDest);
+		static void PixelSum( Ref< Image > InFirstOperand, JSpan< float > InSecondOperand, Image& InDest );
 	};
 
 }

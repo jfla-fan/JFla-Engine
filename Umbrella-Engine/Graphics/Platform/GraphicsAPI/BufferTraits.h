@@ -23,7 +23,7 @@
 
 /************************************************************************ */
 
-namespace J::Graphics::GpuApi
+namespace UE::Graphics::GpuApi
 {
 	enum class EBufferType;
 	enum class EBufferUsage;
@@ -32,7 +32,7 @@ namespace J::Graphics::GpuApi
 	struct BufferRef;
 }
 
-namespace J
+namespace UE
 {
 	using namespace Graphics::GpuApi;
 

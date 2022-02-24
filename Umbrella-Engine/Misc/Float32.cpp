@@ -1,7 +1,7 @@
 #include "Float32.h"
 
 
-namespace J
+namespace UE
 {
 	inline Float32::operator float() const
 	{

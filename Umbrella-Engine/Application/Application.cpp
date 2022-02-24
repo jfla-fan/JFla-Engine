@@ -1,12 +1,12 @@
 #include "Application.h"
 
 
-namespace J
+namespace UE
 {
-	Application::Application(const std::string& InTitle, int32 InWidth, int32 InHeight)
-		: bIsRunning(false)
+	Application::Application( const String& InTitle, int32 InWidth, int32 InHeight )
+		: bIsRunning( false )
 	{
-		OnCreate(InTitle, InWidth, InHeight);
+		OnCreate( InTitle, InWidth, InHeight );
 	}
 
 	Application::~Application()
@@ -18,7 +18,7 @@ namespace J
 	{
 		bIsRunning = true;
 
-		while (bIsRunning)
+		while ( bIsRunning )
 		{
 			OnUpdate();
 
@@ -26,10 +26,10 @@ namespace J
 		}
 	}
 
-	void Application::OnCreate(const std::string& InTitle, int32 InWidth, int32 InHeight)
+	void Application::OnCreate( const String& InTitle, int32 InWidth, int32 InHeight )
 	{
 		GraphicsContext::OnInit();
-		window = MakeRef<JSDLWindow>(SWindowCreateOptions(InTitle, InWidth, InHeight));
+		window = MakeRef< JSDLWindow >( SWindowCreateOptions( InTitle, InWidth, InHeight ) );
 	}
 
 	void Application::OnUpdate()

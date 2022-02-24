@@ -1,9 +1,12 @@
 #pragma once
 #include <string>
+#include <string_view>
 
 
-namespace J
+namespace UE
 {
-	using JString = std::string;
+	using String = std::string;
+
+	using StringView = std::string_view;
 
 }

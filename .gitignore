@@ -16,3 +16,9 @@ UmbrellaEngine.vcxproj.filters
 .vs/
 
 ThirdParties/SDL2/
+
+UmbrellaEngine.sln
+
+UmbrellaEngine.vcxproj.user
+
+x64/

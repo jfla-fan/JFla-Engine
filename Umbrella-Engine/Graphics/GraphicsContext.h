@@ -2,12 +2,12 @@
 
 #include "../Core.h"
 #include "SDL.h"
-#include "Platform/GraphicsAPI/GraphicsAPI.h"
+#include "Platform/GraphicsAPI/GraphicsApiPublic.h"
 #include "../Math/Color.h"
 
 //#include "Platform/GraphicsAPI/OpenGL/OpenGLContext.h"
 
-namespace J::Graphics
+namespace UE::Graphics
 {
 	enum class EGLPrimitiveType
 	{
@@ -58,8 +58,6 @@ namespace J::Graphics
 		static inline bool DoublebufferingEnabled() { int32 result; SDL_GL_GetAttribute( SDL_GL_DOUBLEBUFFER, &result ); return result; }
 
 		static inline void SetPointSize( float size ) { OpenGLContext::PointSize( size ); }
-
-		static inline void BindShader( const JShader& shader ) { OpenGLContext::UseProgram( shader.GetHandle() ); }
 
 		static inline void DrawElements( EGLPrimitiveType primitive, const OpenGLIndexBuffer& indicies )
 		{

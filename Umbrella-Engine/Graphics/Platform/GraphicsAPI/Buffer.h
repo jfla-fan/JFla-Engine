@@ -5,22 +5,20 @@
 
 
 
-namespace J::Graphics
+namespace UE::Graphics
 {
-	using GpuApi::EBufferUsage;
-	using GpuApi::EBufferType;
-	using GpuApi::EBufferAccessBits;
+	USE_BUFFER_TYPES()
 
 
-	static_assert( to_underlying( EBufferUsage::STREAM_DRAW )					== GL_STREAM_DRAW,				"Require direct mapping to OpenGL constant." );
-	static_assert( to_underlying( EBufferUsage::STREAM_READ )					== GL_STREAM_READ,				"Require direct mapping to OpenGL constant." );
-	static_assert( to_underlying( EBufferUsage::STREAM_COPY )					== GL_STREAM_COPY,				"Require direct mapping to OpenGL constant." );
-	static_assert( to_underlying( EBufferUsage::STATIC_DRAW )					== GL_STATIC_DRAW,				"Require direct mapping to OpenGL constant." );
-	static_assert( to_underlying( EBufferUsage::STATIC_READ )					== GL_STATIC_READ,				"Require direct mapping to OpenGL constant." );
-	static_assert( to_underlying( EBufferUsage::STATIC_COPY )					== GL_STATIC_COPY,				"Require direct mapping to OpenGL constant." );
-	static_assert( to_underlying( EBufferUsage::DYNAMIC_DRAW )					== GL_DYNAMIC_DRAW,				"Require direct mapping to OpenGL constant." );
-	static_assert( to_underlying( EBufferUsage::DYNAMIC_READ )					== GL_DYNAMIC_READ,				"Require direct mapping to OpenGL constant." );
-	static_assert( to_underlying( EBufferUsage::DYNAMIC_COPY )					== GL_DYNAMIC_COPY,				"Require direct mapping to OpenGL constant." );
+	static_assert( to_underlying( EBufferUsage::STREAM_DRAW )					== GL_STREAM_DRAW,				 "Require direct mapping to OpenGL constant." );
+	static_assert( to_underlying( EBufferUsage::STREAM_READ )					== GL_STREAM_READ,				 "Require direct mapping to OpenGL constant." );
+	static_assert( to_underlying( EBufferUsage::STREAM_COPY )					== GL_STREAM_COPY,				 "Require direct mapping to OpenGL constant." );
+	static_assert( to_underlying( EBufferUsage::STATIC_DRAW )					== GL_STATIC_DRAW,				 "Require direct mapping to OpenGL constant." );
+	static_assert( to_underlying( EBufferUsage::STATIC_READ )					== GL_STATIC_READ,				 "Require direct mapping to OpenGL constant." );
+	static_assert( to_underlying( EBufferUsage::STATIC_COPY )					== GL_STATIC_COPY,				 "Require direct mapping to OpenGL constant." );
+	static_assert( to_underlying( EBufferUsage::DYNAMIC_DRAW )					== GL_DYNAMIC_DRAW,				 "Require direct mapping to OpenGL constant." );
+	static_assert( to_underlying( EBufferUsage::DYNAMIC_READ )					== GL_DYNAMIC_READ,				 "Require direct mapping to OpenGL constant." );
+	static_assert( to_underlying( EBufferUsage::DYNAMIC_COPY )					== GL_DYNAMIC_COPY,				 "Require direct mapping to OpenGL constant." );
 
 
 	static_assert( to_underlying( EBufferType::ARRAY_BUFFER )					== GL_ARRAY_BUFFER,				 "Require direct mapping to OpenGL constant." );
@@ -92,18 +90,16 @@ namespace J::Graphics
 		virtual void			Bind() const = 0;
 		virtual void			Unbind() const = 0;
 
-		virtual resource_type	GetNativeHandle() const = 0;
+		virtual resource_type	GetDescriptor() const = 0;
 		virtual buffer_type		GetBufferType() const = 0;
 		virtual usage_type		GetUsage() const = 0;
 		virtual size_type		GetSize() const = 0;
-		virtual size_type		GetOffset() const = 0;
 		virtual access_type		GetAccess() const = 0;
 
 		virtual bool			IsValid() const = 0;
 
 		static Scope<this_type> Create( element_type* elements, size_type size, buffer_type type, usage_type usage, access_type access )
 		{
-			//return CreateFunc(elements, size, type, usage);
 			return BufferBuilder< this_type, tag_type >().Create( elements, size, type, usage, access );
 		}
 
@@ -164,11 +160,10 @@ namespace J::Graphics
 		virtual void			Bind() const = 0;
 		virtual void			Unbind() const = 0;
 
-		virtual resource_type	GetNativeHandle() const = 0;
+		virtual resource_type	GetDescriptor() const = 0;
 		virtual buffer_type		GetBufferType() const = 0;
 		virtual usage_type		GetUsage() const = 0;
 		virtual size_type		GetSize() const = 0;
-		virtual size_type		GetOffset() const = 0;
 		virtual access_type		GetAccess() const = 0;
 
 		virtual bool			IsValid() const = 0;
@@ -238,11 +233,10 @@ namespace J::Graphics
 		virtual void			Bind() const = 0;
 		virtual void			Unbind() const = 0;
 
-		virtual resource_type	GetNativeHandle() const = 0;
+		virtual resource_type	GetDescriptor() const = 0;
 		virtual buffer_type		GetBufferType() const = 0;
 		virtual usage_type		GetUsage() const = 0;
 		virtual size_type		GetSize() const = 0;
-		virtual size_type		GetOffset() const = 0;
 		virtual access_type		GetAccess() const = 0;
 
 		virtual bool			IsValid() const = 0;

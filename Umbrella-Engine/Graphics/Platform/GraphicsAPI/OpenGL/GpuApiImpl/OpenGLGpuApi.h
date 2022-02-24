@@ -1,20 +1,17 @@
 #pragma once
+
 #include "../../GpuTypes.h"
+#include "../../GpuApiCommon.h"
 #include "../OpenGLContext.h"
 
 
 
-namespace J::Graphics::GpuApi
+namespace UE::Graphics::GpuApi
 {
 
-	struct SDeviceData;
+	struct SDeviceData;	// GpuDeviceData.h
 
-	// #TODO DECIDE ABOUT THIS
-	// SHOULD IT BE PURE OPENGL IMPLEMENTATION OR IT IS BETTER JUST TO LEAVE IT HERE.
-	// IF YOU CHOOSE THE FIRST VARIANT, GOTTA DEAL WITH COMPILIER ERROR C2709 
-	// RESOURCE CONTAINERS IN DEVICE DATA ALLOCATE THEIR MEMORY ON STACK AND
-	// REQUIRE SBufferData TO BE DEFINED. DECLARATION DOES NOT WORK AS WELL AS POINTERS.
-	// WHAT A DILEMMA ...
+
 
 	struct SBufferData
 	{
@@ -23,17 +20,96 @@ namespace J::Graphics::GpuApi
 
 		GLuint		Resource;		// GPU descriptor
 
+		bool		bIsBound;
+
 		SBufferData()
 			: Description()
-			, Resource(0)
+			, Resource( OpenGLContext::GInvalidGLResource )
+			, bIsBound( false )
 		{
 		}
 
 	};
 
-	
-	// STextureData, etc ...
+	struct SShaderData
+	{
 
+		SShaderDesc Description;
+
+		GLuint Resource;
+
+		String CompilationFailureMessage;
+
+		SShaderData()
+			: Description()
+			, Resource( OpenGLContext::GInvalidGLResource )
+			, CompilationFailureMessage( "" )
+		{
+		}
+
+	};
+	
+	struct STextureData
+	{
+
+		STextureDesc	Description;
+
+		GLuint			Resource;
+
+		GLuint			ActiveId;
+
+		bool			bIsBound;
+
+		STextureData()
+			: Description()
+			, Resource( OpenGLContext::GInvalidGLResource )
+			, ActiveId( 0 )
+			, bIsBound( false )
+		{
+		}
+
+	};
+	
+	struct SInputLayoutData
+	{
+		GLuint Resource;				// Vertex Array Object
+
+		uint32 AttributeIndex;
+
+		bool   bLoaded;
+
+		SInputLayoutDesc Description;
+	
+		SInputLayoutData()
+			: Resource( OpenGLContext::GInvalidGLResource )
+			, AttributeIndex( 0 )
+			, bLoaded( false )
+			, Description()
+		{
+		}
+	};
+
+	struct SRenderStateData
+	{
+		SRenderStateDesc	Description;
+
+		GLuint				FramebufferResource;		// FBO - framebuffer object
+
+		GLuint				ProgramResource;			// Program object - result of compiling and linking shaders.
+
+		String				CookingFailureReason;
+	};
+
+
+	ShaderRef	AllocateShader( EShaderType type );
+
+	BufferRef	AllocateBuffer();
+
+	TextureRef	AllocateTexture();
+
+	InputLayoutRef AllocateInputLayout();
+
+	RenderStateRef AllocateRenderState();
 }
 
 

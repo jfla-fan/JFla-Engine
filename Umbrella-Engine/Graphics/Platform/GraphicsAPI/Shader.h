@@ -5,46 +5,53 @@
 
 
 
-namespace J::Graphics
+namespace UE::Graphics
 {
 	using namespace Math;
 
-	struct SPipelineStageInfo;
+	USE_SHADER_TYPES()
 
 
 	// Shader class
 
-	class JShader
+	class CShader
 	{
+	protected:
+
+		CShader() : Type(), Descriptor(), bLoaded( false ), bCompiled( false ) { }
+		CShader( EShaderType type ) : Type( type ), Descriptor(), bLoaded( false ), bCompiled( false ) { }
+
 	public:
 
-		using IdType = uint32;
-		using UniformIdType = int32;
 
-	public:
-
-		JShader() { }
-
-		JShader( const JShader& ) = delete;
-		JShader& operator = ( const JShader& ) = delete;
-
-		virtual ~JShader() { };
+		CShader( const CShader& ) = delete;
+		CShader& operator = ( const CShader& ) = delete;
 
 
-		virtual void Bind() const = 0;
-		virtual void Unbind() const = 0;
+		virtual ~CShader() { };
 
-		virtual IdType GetHandle() const = 0;
+
+		virtual ShaderRef	GetDescriptor() const { return Descriptor; }
+		virtual EShaderType GetType() const { return Type; }
+		virtual bool		IsValid() const { return !Descriptor.IsNull(); }
+
 		virtual void Release() = 0;
 
+		virtual bool Load( ResourceView source ) = 0;
 
-		virtual void LoadFromString( const std::string& vertex, const std::string& fragment ) = 0;
-		virtual void LoadFromString( const std::string& vertex, const std::string& geometry, const std::string& fragment ) = 0;
-		
-		virtual void Load( const system::FilePath& vertexPath, const system::FilePath& fragmentPath ) = 0;
-		virtual void Load( const system::FilePath& vertexPath, const system::FilePath& geometry, const system::FilePath& fragmentPath ) = 0;
+		virtual bool Load( const system::FilePath& path ) = 0;
 
-		virtual void SetUniform( const std::string& name, float		 value ) const { };
+		virtual bool IsLoaded() const { return bLoaded; }
+
+		virtual void MarkLoaded( bool loaded = true ) { bLoaded = loaded; }
+
+		virtual void MarkCompiled( bool compiled = true ) { bCompiled = compiled; }
+
+		virtual bool Compile() = 0;
+
+		virtual bool IsCompiled() const { return bCompiled; }
+
+		/*virtual void SetUniform( const std::string& name, float		 value ) const { };
 		virtual void SetUniform( const std::string& name, int		 value ) const { };
 		virtual void SetUniform( const std::string& name, double	 value ) const { };
 		virtual void SetUniform( const std::string& name, Vector1	 value ) const { };
@@ -54,7 +61,14 @@ namespace J::Graphics
 		virtual void SetUniform( const std::string& name, VectorInt1 value ) const { };
 		virtual void SetUniform( const std::string& name, VectorInt2 value ) const { };
 		virtual void SetUniform( const std::string& name, VectorInt3 value ) const { };
-		virtual void SetUniform( const std::string& name, VectorInt4 value ) const { };
+		virtual void SetUniform( const std::string& name, VectorInt4 value ) const { };*/
+
+	protected:
+
+		ShaderRef	Descriptor;
+		EShaderType Type;
+		bool		bLoaded;
+		bool		bCompiled;
 
 	};
 

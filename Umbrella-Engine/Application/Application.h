@@ -5,7 +5,7 @@
 #include <string>
 
 
-namespace J 
+namespace UE 
 {
 	using namespace Graphics;
 
@@ -15,20 +15,20 @@ namespace J
 	public:
 
 		Application() = delete;
-		Application(const std::string& InTitle, int32 InWidth, int32 InHeight);
+		Application( const String& InTitle, int32 InWidth, int32 InHeight );
 
 		~Application();
 
 		void Run();
 
-		Ref<JSDLWindow> GetWindow() const { return window; }
+		Ref< JSDLWindow > GetWindow() const { return window; }
 
 		SWindowCreateOptions GetWindowOptions() const { return window->GetOptions(); }
 		bool IsWindowOpened() const { return window->IsOpened(); }
 	
 	protected:
 
-		virtual void OnCreate(const std::string& InTitle, int32 InWidth, int32 InHeight);
+		virtual void OnCreate( const String& InTitle, int32 InWidth, int32 InHeight );
 
 		virtual void OnUpdate();
 
@@ -40,7 +40,7 @@ namespace J
 
 		bool bIsRunning;
 
-		Ref<JSDLWindow> window;
+		Ref< JSDLWindow > window;
 
 
 	};

@@ -3,7 +3,7 @@
 
 
 //#include <boost/array.hpp>
-//using namespace J;
+//using namespace UE;
 
 
 int main(int argc, char* argv[])
@@ -33,7 +33,7 @@ int main(int argc, char* argv[])
 	//}
 	
 
-	J::Application app("Cat", 640, 640);
+	UE::Application app( "Umbrella Editor", 720, 720 );
 
 	app.Run();
 

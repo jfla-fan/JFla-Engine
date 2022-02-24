@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace J::Graphics
+namespace UE::Graphics
 {
 	/*
 	 * Represents OpenGL drawing functions.

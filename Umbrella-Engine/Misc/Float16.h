@@ -4,7 +4,7 @@
 #include <compare>
 
 
-namespace J
+namespace UE
 {
 	/**
 	 * IEEE 754 half-precision binary floating-point format.
@@ -31,18 +31,18 @@ namespace J
 			uint16 Value;
 		};
 
-		Float16() : Value(0) { };
-		Float16(float InValue);
+		Float16() : Value( 0 ) { };
+		Float16( float InValue );
 
-		Float16(const Float16& another);
-		Float16(Float16&& another);
+		Float16( const Float16& another );
+		Float16( Float16&& another );
 
-		Float16& operator = (const Float16& another);
-		Float16& operator = (Float16&& another);
+		Float16& operator = ( const Float16& another );
+		Float16& operator = ( Float16&& another );
 
 		operator float() const;
 
-		auto operator <=> (const Float16& another) const = default;		// automatically generates all six comparison operators
+		auto operator <=> ( const Float16& another ) const = default;		// automatically generates all six comparison operators
 	};
 
 

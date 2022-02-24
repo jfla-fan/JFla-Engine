@@ -3,7 +3,7 @@
 
 
 
-namespace J::Utils
+namespace UE::Utils
 {
 
 	/**
@@ -12,7 +12,7 @@ namespace J::Utils
 	 * Make sure _ResRef type is a resource ( see Graphics/Platform/GraphicsAPI/gpuResourceRef.inl )
 	 * 
 	 */
-	template < typename _ResRef, typename _Value, SIZE_T MAX_COUNT = UINT16_MAX >
+	template < typename _ResRef, typename _Value, SIZE_T MAX_COUNT = UINT8_MAX >
 	class ResourceContainer
 	{
 	public:
@@ -183,7 +183,7 @@ namespace J::Utils
 			JF_ASSERT( IsInUse( ref ), "Cannot increment invalid resource." );
 			SData& data = Resources[IdToIndex( ref )];
 
-			int32 newRefCount = ++data.RefCount;
+			int32 newRefCount = --data.RefCount;
 
 			JF_ASSERT( newRefCount >= 0, "Decref'ing a resource ref too many times." );
 

@@ -7,7 +7,7 @@
 #include <bit>
 
 
-namespace J::Math
+namespace UE::Math
 {
 	// types
 
@@ -44,71 +44,71 @@ namespace J::Math
 
 	using Quaternion	= glm::quat;
 
-	template<class _Ty, glm::length_t _Rank>
-	using Vector		= glm::vec<_Rank, _Ty>;
+	template< class _Ty, glm::length_t _Rank >
+	using Vector		= glm::vec< _Rank, _Ty >;
 
-	template<class _Ty, glm::length_t _Columns, glm::length_t _Raws>
-	using Matrix		= glm::mat<_Columns, _Raws, _Ty>;
+	template< class _Ty, glm::length_t _Columns, glm::length_t _Raws >
+	using Matrix		= glm::mat< _Columns, _Raws, _Ty >;
 
 	
 	// common functions
 
-	template<typename _Ty>
-	FORCEINLINE _Ty Clamp(_Ty Value, _Ty Min, _Ty Max)
+	template< typename _Ty >
+	FORCEINLINE _Ty Clamp( _Ty Value, _Ty Min, _Ty Max )
 	{
-		return glm::clamp(Value, Min, Max);
+		return glm::clamp( Value, Min, Max );
 	}
 
-	template<typename _Ty>
-	FORCEINLINE _Ty Min(_Ty v1, _Ty v2)
+	template< typename _Ty >
+	FORCEINLINE _Ty Min( _Ty v1, _Ty v2 )
 	{
-		return glm::min(v1, v2);
+		return glm::min( v1, v2 );
 	}
 
-	template<typename _Ty>
-	FORCEINLINE _Ty Max(_Ty v1, _Ty v2)
+	template< typename _Ty >
+	FORCEINLINE _Ty Max( _Ty v1, _Ty v2 )
 	{
-		return glm::max(v1, v2);
+		return glm::max( v1, v2 );
 	}
 
-	template<typename _Ty>
-	FORCEINLINE _Ty Abs(_Ty v)
+	template< typename _Ty >
+	FORCEINLINE _Ty Abs( _Ty v )
 	{
-		return glm::abs(v);
+		return glm::abs( v );
 	}
 
-	template<typename _Ty>
-	FORCEINLINE bool IsPowerOf2(_Ty t)
+	template< typename _Ty >
+	FORCEINLINE bool IsPowerOf2( _Ty t )
 	{
-		return std::has_single_bit(t);
+		return std::has_single_bit( t );
 	}
 
-	template<class _Ty, class... Args>
-	FORCEINLINE auto MakeVector(Args&&... args)
+	template< class _Ty, class... Args >
+	FORCEINLINE auto MakeVector( Args&&... args )
 	{
-		return Vector(std::forward<Args>(args)...);
+		return Vector( std::forward< Args >( args )... );
 	}
 
-	template<class _Ty>
-	FORCEINLINE _Ty Log(_Ty value)
+	template<class _Ty >
+	FORCEINLINE _Ty Log( _Ty value )
 	{
-		return glm::log(value);
+		return glm::log( value );
 	}
 
-	template<class _Ty>
-	FORCEINLINE _Ty Log2(_Ty value)
+	template< class _Ty >
+	FORCEINLINE _Ty Log2( _Ty value )
 	{
-		return glm::log2(value);
+		return glm::log2( value );
 	}
 
-	FORCEINLINE Vector4 MakeVector4(float x, float y, float z, float w)
+	FORCEINLINE Vector4 MakeVector4( float x, float y, float z, float w )
 	{
-		return Vector4(x, y, z, w);
+		return Vector4( x, y, z, w );
 	}
 
-	FORCEINLINE Vector4 MakeVector4(float v)
+	FORCEINLINE Vector4 MakeVector4( float v )
 	{
-		return Vector4(v);
+		return Vector4( v );
 	}
 
 	FORCEINLINE Vector4 MakeVector4()
@@ -116,14 +116,14 @@ namespace J::Math
 		return Vector4();
 	}
 
-	FORCEINLINE Vector3 MakeVector3(float x, float y, float z)
+	FORCEINLINE Vector3 MakeVector3( float x, float y, float z )
 	{
-		return Vector3(x, y, z);
+		return Vector3( x, y, z );
 	}
 
-	FORCEINLINE Vector3 MakeVector3(float v)
+	FORCEINLINE Vector3 MakeVector3( float v )
 	{
-		return Vector3(v);
+		return Vector3( v );
 	}
 
 	FORCEINLINE Vector3 MakeVector3()
@@ -131,14 +131,14 @@ namespace J::Math
 		return Vector3();
 	}
 
-	FORCEINLINE Vector2 MakeVector2(float x, float y)
+	FORCEINLINE Vector2 MakeVector2( float x, float y )
 	{
 		return Vector2(x, y);
 	}
 
-	FORCEINLINE Vector2 MakeVector2(float v)
+	FORCEINLINE Vector2 MakeVector2( float v )
 	{
-		return Vector2(v);
+		return Vector2( v );
 	}
 
 	FORCEINLINE Vector2 MakeVector2()
@@ -146,9 +146,9 @@ namespace J::Math
 		return Vector2();
 	}
 
-	FORCEINLINE Vector1 MakeVector(float v)
+	FORCEINLINE Vector1 MakeVector( float v )
 	{
-		return Vector1(v);
+		return Vector1( v );
 	}
 
 	FORCEINLINE Vector1 MakeVector()

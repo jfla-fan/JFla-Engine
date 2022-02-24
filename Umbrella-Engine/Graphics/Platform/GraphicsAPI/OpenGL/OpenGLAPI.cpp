@@ -2,7 +2,7 @@
 
 
 
-namespace J::Graphics::GpuApi
+namespace UE::Graphics::GpuApi
 {
 	
 }

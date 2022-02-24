@@ -4,69 +4,47 @@
 
 
 
-namespace J::Graphics
+namespace UE::Graphics
 {
 	using namespace Utils;
 
-	using GpuApi::ETextureFormat;
-	using GpuApi::STextureSizeInfo;
+	USE_TEXTURE_TYPES()
 
 
-	static_assert((SIZE_T)ETextureFormat::AUTO - (SIZE_T)ETextureFormat::R >= 5, "Add texture formats.");
+	static_assert( ( SIZE_T )ETextureFormat::AUTO - ( SIZE_T )ETextureFormat::R >= 5, "Add texture formats." );
 
 
-	static GLint WrapModeToGLEnumTable[] =
+	static ETextureFormat Map( ERawImageFormat format )
 	{
-		GL_CLAMP_TO_EDGE,
-		GL_CLAMP_TO_BORDER,
-		GL_MIRRORED_REPEAT,
-		GL_REPEAT,
-		GL_MIRROR_CLAMP_TO_EDGE
-	};
 
+#define CASE_LABEL( format )					\
+		case ERawImageFormat::format:			\
+			return ETextureFormat::format
 
-	static GLenum Map(ETextureFormat format)
-	{
-#define CASE_LABEL(format_type)\
-case ETextureFormat::format_type:\
-		return GL_##format_type
+#define CUSTOM_CASE_LABEL( imFormat, texFormat)	\
+		case ERawImageFormat::imFormat:			\
+			return ETextureFormat::texFormat;
 
-#define CUSTOM_CASE_LABEL(format_type, gl_type)\
-		case ETextureFormat::format_type:\
-			return gl_type
-		
-		switch (format)
+		switch ( format )
 		{
-			CUSTOM_CASE_LABEL(R, GL_RED);
-			CASE_LABEL(R8);
-			CASE_LABEL(R16);
-			CASE_LABEL(R16F);
-			CASE_LABEL(R32F);
+		case ERawImageFormat::L8:
+		case ERawImageFormat::LA8:
 
-			CASE_LABEL(RG);
-			CASE_LABEL(RG8);
-			CASE_LABEL(RG16);
-			CASE_LABEL(RG16F);
-			CASE_LABEL(RG32F);
+			CASE_LABEL( R8 );
+			CASE_LABEL( RG8 );
+			CASE_LABEL( RGB8 );
+			CASE_LABEL( RGBA8 );
 
-			CASE_LABEL(RGB);
-			CASE_LABEL(RGB8);
-			CASE_LABEL(RGB16);
-			CASE_LABEL(RGB16F);
-
-			CASE_LABEL(RGBA);
-			CASE_LABEL(RGBA8);
-			CASE_LABEL(RGBA16F);
-
-			CUSTOM_CASE_LABEL(AUTO, GL_RGB);
-
-			CUSTOM_CASE_LABEL(DEPTH, GL_DEPTH_COMPONENT);
-
-		default:
-			{
-				// #todo WARN!
-				return GL_RGB;
-			}
+			CUSTOM_CASE_LABEL( RH, R16F );
+			CUSTOM_CASE_LABEL( RGBH, RGB16F );
+			CUSTOM_CASE_LABEL( RGBAH, RGBA16F );
+			
+			CUSTOM_CASE_LABEL( RF, R32F );
+			CUSTOM_CASE_LABEL( RGBF, RGB32F );
+			CUSTOM_CASE_LABEL( RGBAF, RGBA32F );
+			
+			default:
+				return ETextureFormat::AUTO;
 		}
 
 #undef CASE_LABEL
@@ -74,25 +52,111 @@ case ETextureFormat::format_type:\
 
 	}
 
-
-	OpenGLTexture::OpenGLTexture()
-		: Resource(OpenGLContext::GInvalidGLResource)
-		, bLoaded(false)
-		, bHasMipChain(false)
-		, bInitialized(false)
-		, Format()
-		, ResourcePath("")
+	static ERawImageFormat Map( ETextureFormat format )
 	{
-		AllocateResource();
+#define CASE_LABEL( format )					\
+		case ETextureFormat::format:			\
+			return ERawImageFormat::format
+
+#define CUSTOM_CASE_LABEL( imFormat, texFormat)	\
+		case ETextureFormat::imFormat:			\
+			return ERawImageFormat::texFormat;
+
+		switch( format )
+		{
+			CASE_LABEL( R8 );
+
+			CUSTOM_CASE_LABEL( R, R8 );
+			CUSTOM_CASE_LABEL( R16, RH );
+			CUSTOM_CASE_LABEL( R16F, RH );
+			CUSTOM_CASE_LABEL( R32F, RF);
+
+			CASE_LABEL( RG8 );
+			CUSTOM_CASE_LABEL( RG, RG8);
+
+			CASE_LABEL( RGB8 );
+			CUSTOM_CASE_LABEL( RGB, RGB8 );
+			CUSTOM_CASE_LABEL( RGB16, RGBH );
+			CUSTOM_CASE_LABEL( RGB16F, RGBH );
+			CUSTOM_CASE_LABEL( RGB32F, RGBF );
+
+			CASE_LABEL( RGBA8 );
+			CUSTOM_CASE_LABEL( RGBA, RGBA8 );
+			CUSTOM_CASE_LABEL( RGBA16F, RGBAH );
+			CUSTOM_CASE_LABEL( RGBA32F, RGBAF );
+			
+			CUSTOM_CASE_LABEL( DEPTH, L8 );
+
+			default:
+				FATAL_ASSERT( false, "Failed to convert texture format to image format [not supported]." );
+
+		}
+
+#undef CASE_LABEL
+#undef CUSTOM_CASE_LABEL
+
 	}
 
-	OpenGLTexture::OpenGLTexture(const system::FilePath& path, bool genMipChain)
+	static ETextureWrappingMode Map( GLenum mode )
 	{
-		AllocateResource();
 
-		this->Load(path);
+#define CASE_LABEL(format_type)\
+		case GL_##format_type:\
+			return ETextureWrappingMode::format_type
 
-		if (genMipChain)
+		switch ( mode )
+		{
+			CASE_LABEL(CLAMP_TO_EDGE);
+			CASE_LABEL(CLAMP_TO_BORDER);
+			CASE_LABEL(MIRRORED_REPEAT);
+			CASE_LABEL(REPEAT);
+			CASE_LABEL(MIRROR_CLAMP_TO_EDGE);
+
+		default:
+			// #todo LOG_ERROR
+			break;
+		}
+
+#undef CASE_LABEL
+
+		return ETextureWrappingMode::REPEAT;
+	}
+
+
+	OpenGLTexture::OpenGLTexture( ETextureType textureType, ETextureFormat textureFormat, const String& debugName )
+		: bLoaded( false )
+		, bHasMipChain( false )
+		, bAllocated( false )
+		, eType( textureType )
+		, eFormat( textureFormat )
+		, eAccess( ETextureAccessBits::ALL )
+		, DebugName( debugName )
+		, ResourcePath( "" )
+	{
+		Descriptor = GpuApi::CreateTexture( textureType, textureFormat, ETextureAccessBits::ALL, debugName );
+
+		JF_ASSERT( Descriptor, "Failed to create a texture." );
+	}
+
+	OpenGLTexture::OpenGLTexture( const system::FilePath& path, ETextureType textureType,
+								  ETextureAccessBits access, bool genMipChain, const String& debugName )
+		: OpenGLTexture( textureType, ETextureFormat::AUTO, debugName )
+	{
+		this->Load( path, ETextureFormat::AUTO, access );
+
+		if ( genMipChain )
+		{
+			this->GenerateMipmapChain();
+		}
+	}
+
+	OpenGLTexture::OpenGLTexture( CMemPtr data, ETextureFormat dataFormat, STextureSizeInfo info, ETextureType textureType,
+								  ETextureFormat textureFormat, ETextureAccessBits access, bool genMipChain, const String& debugName )
+		: OpenGLTexture( textureType, textureFormat, debugName )
+	{
+		this->Load( data, info, dataFormat, textureFormat, access );
+
+		if ( genMipChain )
 		{
 			this->GenerateMipmapChain();
 		}
@@ -103,232 +167,130 @@ case ETextureFormat::format_type:\
 		this->Release();
 	}
 
-	bool OpenGLTexture::AllocateResource()
+	void OpenGLTexture::Release()
 	{
-		OpenGLContext::GenTextures(1, &Resource);
-
-		return true;
-	}
-
-	void OpenGLTexture::Release() const
-	{
-		if (IsValid())
-		{
-			OpenGLContext::DeleteTextures(1, &Resource);
-			bHasMipChain = false;
-			bInitialized = false;
-			bLoaded = false;
-		}
+		GpuApi::SafeRelease( Descriptor );
 	}
 
 	void OpenGLTexture::Bind() const
 	{
-		OpenGLContext::ActiveTexture(GL_TEXTURE0 + Active);
-		OpenGLContext::BindTexture(TextureType, Resource);
+		GpuApi::BindTexture( Descriptor );
 	}
 
-	void OpenGLTexture::Bind(uint32 id) const
+	void OpenGLTexture::Bind( uint32 id ) const
 	{
-		OpenGLContext::ActiveTexture(GL_TEXTURE0 + id);
+		GpuApi::BindTexture( Descriptor, id );
 		this->Active = id;
-		OpenGLContext::BindTexture(TextureType, Resource);
 	}
 
 	void OpenGLTexture::Unbind() const
 	{
-		OpenGLContext::ActiveTexture(TextureType);
-		OpenGLContext::BindTexture(TextureType, OpenGLContext::GInvalidGLResource);
+		GpuApi::UnbindTexture( Descriptor );
 	}
 
 	void OpenGLTexture::GenerateMipmapChain() const
 	{
 		if (IsValid())
 		{
-			this->Bind(0);
+			if ( GpuApi::GenerateMipmaps( Descriptor ) )
+			{
+				bHasMipChain = true;
+			}
+			else
+			{
+				// #todo HALT
+			}
 
-			// #todo create methods for setting those?
-			GLCALL(glTexParameteri(TextureType, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR));
-			GLCALL(glTexParameteri(TextureType, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
-			
-			OpenGLContext::GenerateMipmap(TextureType);
-			bHasMipChain = true;
 		}
 	}
 
-	bool OpenGLTexture::Load(const system::FilePath& path, ETextureFormat format /* = ETextureFormat::AUTO */)
+	bool OpenGLTexture::Load( CMemPtr data, STextureSizeInfo info, ETextureFormat dataFormat,
+							  ETextureFormat textureFormat, ETextureAccessBits access )
 	{
-		auto img = ImageLoader::Load(path, true);
+		GpuApi::AllocateTextureStorage( Descriptor, info, 0, data, dataFormat, textureFormat, access );
+
+		SizeInfo = info;
+		eFormat = ( textureFormat == ETextureFormat::AUTO ) ? dataFormat : textureFormat;
+		eAccess = access;
+
+		bAllocated = true;
+		bLoaded = true;
+
+		return true;
+	}
+
+	bool OpenGLTexture::Load( const system::FilePath& path, ETextureFormat format, ETextureAccessBits access )
+	{
+		auto img = ImageLoader::Load( path, true );
 	
-		if (!img || !img->IsInitialized())
+		if ( !img || !img->IsInitialized() )
 		{
 			// #todo log it
 			return false;
 		}
 
-		GLenum pixelType = GL_UNSIGNED_BYTE;
-		GLenum internalType = Map(format);
-		GLenum dataFormat = GL_RGB;
-
-		switch (img->GetChannelsCount())
+		STextureSizeInfo dataInfo =
 		{
-			case 1:
-			{
-				dataFormat = GL_RED;
-				break;
-			}
+			img->GetWidth(),
+			img->GetHeight(),
+			0,
+			img->GetChannelsCount(),
+			img->GetBytesPerChannel()
+		};
 
-			case 2:
-			{
-				dataFormat = GL_RG;
-				break;
-			}
-			
-			case 3:
-			{
-				dataFormat = GL_RGB;
-				break;
-			}
 
-			case 4:
-			{
-				dataFormat = GL_RGBA;
-				break;
-			}
-			
-			default:
-			{
-				// #todo LOG it
-				return false;
-			}
-
-		}
-		
-		// opengl context :: ...
-		OpenGLContext::BindTexture(TextureType, Resource);
-		glTexImage2D(TextureType, 0, internalType, img->GetWidth(), img->GetHeight(), 0, dataFormat, pixelType, img->RawData());
-		
-		ResourcePath = path;
-
-		SizeInfo.Width = img->GetWidth();
-		SizeInfo.Height = img->GetHeight();
-		SizeInfo.Depth = 0;
-		SizeInfo.ChannelsCount = img->GetChannelsCount();
-		
-		bInitialized = true;
-		bLoaded = true;
-
-		this->GenerateMipmapChain();
-
-		return true;
+		return Load( img->RawData(), dataInfo, Map( img->GetFormat() ), format, access );
 	}
 
-	bool OpenGLTexture::Load(CMemPtr data, uint32 width, uint32 height, uint32 channels, ETextureFormat format /* = ETextureFormat::AUTO */)
+
+	bool OpenGLTexture::Load( const Image& image, ETextureFormat format, ETextureAccessBits access )
 	{
-		GLenum pixelType = GL_UNSIGNED_BYTE;
-		GLenum internalType = Map(format);
-		GLenum dataFormat = GL_RGB;
-
-		switch (channels)
-		{
-		case 1:
-		{
-			dataFormat = GL_RED;
-			break;
-		}
-
-		case 2:
-		{
-			dataFormat = GL_RG;
-			break;
-		}
-
-		case 3:
-		{
-			dataFormat = GL_RGB;
-			break;
-		}
-
-		case 4:
-		{
-			dataFormat = GL_RGBA;
-			break;
-		}
-
-		default:
-		{
-			// #todo LOG it
-			return false;
-		}
-
-		}
-
-		// opengl context :: ...
-		OpenGLContext::BindTexture(TextureType, Resource);
-		glTexImage2D(TextureType, 0, internalType, width, height, 0, dataFormat, pixelType, data);
-
-		SizeInfo.Width = width;
-		SizeInfo.Height = height;
-		SizeInfo.Depth = 0;
-		SizeInfo.ChannelsCount = channels;
-
-		bInitialized = true;
-		bLoaded = true;
-
-		this->GenerateMipmapChain();
-
-		return true;
-	}
-
-	bool OpenGLTexture::Load(const Image& image, ETextureFormat format /* = ETextureFormat::AUTO */)
-	{
-		if (!image.IsInitialized())
+		if ( !image.IsInitialized() )
 		{
 			// #todo WARN
 			return false;
 		}
 
-		return this->Load(image.RawData(), image.GetWidth(), image.GetHeight(), image.GetChannelsCount(), format);
+		STextureSizeInfo info =
+		{
+			image.GetWidth(),
+			image.GetHeight(),
+			0,
+			image.GetChannelsCount(),
+			image.GetBytesPerChannel()
+		};
+
+		return this->Load( image.RawData(), info, Map( image.GetFormat() ), format, access );
 	}
 
-	void OpenGLTexture::SetMinLOD(float lod)
+	void OpenGLTexture::Upload( STextureSubDataInfo info, CMemPtr data )
 	{
-		this->Bind(0);	// #TODO is this right? Make it out
-		GLCALL(glTexParameterf(TextureType, GL_TEXTURE_MIN_LOD, lod));
+		GpuApi::UploadTextureData( Descriptor, info, data );
+	}
+
+	void OpenGLTexture::SetMinLOD( float lod )
+	{
+		GpuApi::SetTextureMinLod( Descriptor, lod );
 	}
 
 	void OpenGLTexture::SetMaxLOD(float lod)
 	{
-		this->Bind(0);
-		GLCALL(glTexParameterf(TextureType, GL_TEXTURE_MAX_LOD, lod));
+		GpuApi::SetTextureMaxLod( Descriptor, lod );
 	}
 
 	void OpenGLTexture::SetBorderColor(Vector4 color)
 	{
-		this->Bind(0);
-		auto normalized = Clamp(color, MakeVector4(), MakeVector4(1.0f));
-		GLCALL(glTexParameterfv(TextureType, GL_TEXTURE_BORDER_COLOR, &normalized[0]));
+		GpuApi::SetTextureBorderColor( Descriptor, color );
 	}
 
-	void OpenGLTexture::SetWrappingMode(ETextureWrappingMode mode, ETextureWrappingAxis axices)
+	void OpenGLTexture::SetWrappingMode(ETextureWrappingMode mode, ETextureWrappingAxis axis)
 	{
-		OpenGLContext::BindTexture(TextureType, OpenGLContext::GInvalidGLResource);
+		GpuApi::SetTextureWrappingModes( Descriptor, new TextureModeParam( axis, mode ), 1 );
+	}
 
-		if (axices & ETextureWrappingAxis::S)
-		{
-			GLCALL(glTexParameteri(TextureType, GL_TEXTURE_WRAP_S, WrapModeToGLEnumTable[(uint32)mode]));
-		}
-
-		if (axices & ETextureWrappingAxis::T)
-		{
-			GLCALL(glTexParameteri(TextureType, GL_TEXTURE_WRAP_T, WrapModeToGLEnumTable[(uint32)mode]));
-		}
-
-		if (axices & ETextureWrappingAxis::R)
-		{
-			GLCALL(glTexParameteri(TextureType, GL_TEXTURE_WRAP_R, WrapModeToGLEnumTable[(uint32)mode]));
-		}
-
-		this->Unbind();
+	void OpenGLTexture::SetFilter( ETextureFilter filter )
+	{
+		GpuApi::SetTextureFilter( Descriptor, filter );
 	}
 
 	float OpenGLTexture::GetMaxLOD() const
@@ -338,73 +300,36 @@ case ETextureFormat::format_type:\
 
 	void OpenGLTexture::SetBiasLOD(float bias)
 	{
-		this->Bind(0);
-		GLCALL(glTexParameterf(TextureType, GL_TEXTURE_LOD_BIAS, (float)bias));
+		GpuApi::SetTextureLodBias( Descriptor, bias );
 	}
 
 	ImagePtr OpenGLTexture::GetImage() const
 	{
-		if (!this->bInitialized || !this->bLoaded)
+		if (!this->bAllocated || !this->bLoaded)
 		{
-			return nullptr;
+			return NullPtr;
 		}
 
-		ERawImageFormat format = ERawImageFormat::AUTO;
-
-		switch (Format)
-		{
-			case ETextureFormat::R:
-			case ETextureFormat::R8:
-			{
-				format = ERawImageFormat::R8;
-				break;
-			}
-
-			case ETextureFormat::RG:
-			case ETextureFormat::RG8:
-			{
-				format = ERawImageFormat::RG8;
-				break;
-			}
-
-			case ETextureFormat::RGB:
-			{
-				format = ERawImageFormat::RGB8;
-				break;
-			}
-
-			case ETextureFormat::RGBA:
-			case ETextureFormat::RGBA8:
-			{
-				format = ERawImageFormat::RGBA8;
-				break;
-			}
-
-			case ETextureFormat::DEPTH:
-			{
-				format = ERawImageFormat::L8;
-				break;
-			}
-
-			default:
-			{
-				// #todo LOG
-				format = ERawImageFormat::AUTO;
-				break;
-			}
-
-		}
-
-		auto img = Image( this->SizeInfo.Width, this->SizeInfo.Height, format );
+		auto img = Image( this->SizeInfo.Width, this->SizeInfo.Height, Map( eFormat ) );
 
 		if ( !img.IsInitialized() )
 		{
-			return nullptr;
+			return NullPtr;
 		}
 
-		this->Bind();
+		STextureSubDataInfo dataInfo
+		{
+			img.GetWidth(),
+			img.GetHeight(),
+			0,
+			0,
+			0,
+			0,
+			img.GetBytesSize(),
+			eFormat
+		};
 
-		GLCALL( glGetTexImage( TextureType, 0, Map( Format ), GL_UNSIGNED_BYTE, img.RawData() ) );
+		GpuApi::GetTextureData( Descriptor, dataInfo, img.RawData() );
 
 		img.MarkInitialized();
 
@@ -413,26 +338,24 @@ case ETextureFormat::format_type:\
 		return ptr;
 	}
 
-
-
 	bool OpenGLTexture::IsLoaded() const
 	{
 		return bLoaded;
 	}
 
-	bool OpenGLTexture::IsInitialized() const
+	bool OpenGLTexture::IsAllocated() const
 	{
-		return bInitialized;
+		return bAllocated;
 	}
 
 	bool OpenGLTexture::IsMultisampled() const
 	{
-		return TextureType == GL_TEXTURE_2D_MULTISAMPLE;
+		return false;
 	}
 
 	bool OpenGLTexture::IsFloatingPoint() const
 	{
-		switch (Format)
+		switch (eFormat)
 		{
 			case ETextureFormat::R16F:
 			case ETextureFormat::R32F:
@@ -448,100 +371,30 @@ case ETextureFormat::format_type:\
 
 	bool OpenGLTexture::IsDepthOnly() const
 	{
-		return Format == ETextureFormat::DEPTH;
+		return eFormat == ETextureFormat::DEPTH;
 	}
 
 	Vector4	OpenGLTexture::GetBorderColor() const
 	{
-		this->Bind(0);
-		Vector4 color;
-
-		GLCALL(glGetTexParameterfv(TextureType, GL_TEXTURE_BORDER_COLOR, &color[0]));
-
-		return color;
+		return GpuApi::GetTextureBorderColor( Descriptor );
 	}
 
 	uint32 OpenGLTexture::GetPixelSize() const
 	{
-		switch (Format)
-		{
-			case ETextureFormat::R:
-			case ETextureFormat::R8:
-			case ETextureFormat::DEPTH:
-				return 1;
-
-			case ETextureFormat::R16:
-			case ETextureFormat::R16F:
-			case ETextureFormat::RG:
-			case ETextureFormat::RG8:
-				return 2;
-			
-			case ETextureFormat::RGB:
-			case ETextureFormat::RGB8:
-				return 3;
-
-			case ETextureFormat::RG16:
-			case ETextureFormat::RG16F:
-			case ETextureFormat::R32F:
-			case ETextureFormat::RGBA:
-			case ETextureFormat::RGBA8:
-				return 4;
-
-			case ETextureFormat::RGB16:
-			case ETextureFormat::RGB16F:
-				return 6;
-
-			case ETextureFormat::RG32F:
-			case ETextureFormat::RGBA16F:
-				return 8;
-			
-			default:
-				// #todo LOG THIS
-				return 0;
-		}
+		return GpuApi::GetPixelSize( eFormat );
 	}
 
 	ETextureWrappingMode OpenGLTexture::GetWrapMode(ETextureWrappingAxis axis) const
 	{
-		GLint mode = GL_REPEAT;
-		
-		if (axis & ETextureWrappingAxis::S)
+		for ( const auto& [ texAxis, texMode ] : GpuApi::GetTextureWrappingModes( Descriptor ) )
 		{
-			GLCALL(glGetTexParameteriv(TextureType, GL_TEXTURE_WRAP_S, &mode));
+			if ( texAxis == axis )
+			{
+				return texMode;
+			}
 		}
-		else if (axis & ETextureWrappingAxis::T)
-		{
-			GLCALL(glGetTexParameteriv(TextureType, GL_TEXTURE_WRAP_T, &mode));
-		}
-		else if (axis & ETextureWrappingAxis::R)
-		{
-			GLCALL(glGetTexParameteriv(TextureType, GL_TEXTURE_WRAP_R, &mode));
-		}
-		else
-		{
-			// #todo LOG ERROR
-		}
-		
-#define CASE_LABEL(format_type)\
-		case GL_##format_type:\
-			return ETextureWrappingMode::format_type
-		
-		switch (mode)
-		{
-			CASE_LABEL(CLAMP_TO_EDGE);
-			CASE_LABEL(CLAMP_TO_BORDER);
-			CASE_LABEL(MIRRORED_REPEAT);
-			CASE_LABEL(REPEAT);
-			CASE_LABEL(MIRROR_CLAMP_TO_EDGE);
-		
-		default:
-			// #todo LOG_ERROR
-			break;
-		}
-
-		return ETextureWrappingMode::REPEAT;	// default open GL mode, should never reach this
-
-#undef CASE_LABEL
+	
+		return ETextureWrappingMode::REPEAT;	// default open GL mode
 	}
 
 	STextureSizeInfo OpenGLTexture::GetSizeInfo() const
@@ -556,11 +409,11 @@ case ETextureFormat::format_type:\
 
 	float OpenGLTexture::GetBiasLOD() const
 	{
-		this->Bind(0);
-		float bias = 0.0f;
+		return GpuApi::GetTextureLodBias( Descriptor );
+	}
 
-		GLCALL(glGetTexParameterfv(TextureType, GL_TEXTURE_LOD_BIAS, &bias));
-
-		return bias;
+	ETextureFilter OpenGLTexture::GetFilter() const
+	{
+		return GpuApi::GetTextureFilter( Descriptor );
 	}
 }

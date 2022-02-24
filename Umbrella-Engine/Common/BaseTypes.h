@@ -3,7 +3,7 @@
 #include <cstddef>
 
 
-namespace J::Platform
+namespace UE::Platform
 {
 
 	// signed types
@@ -47,7 +47,7 @@ namespace J::Platform
 	using ANSICHAR			= char;
 
 	// A wide character. ?-bit fixed-width representation of the platform's natural wide character set. Could be different sizes on different platforms. 
-	using WIDECHAR			= wchar_t;
+	using UNICHAR			= wchar_t;
 
 	// unsigned char
 	using UCHAR				= unsigned char;
@@ -76,45 +76,45 @@ namespace J::Platform
 	using CMemCPtr			= const void* const;	// ?? const pointer to const value (check?)
 }
 
-#define DECLARE_PLATFORM_TYPE(type) using J::Platform::##type
+#define DECLARE_PLATFORM_TYPE( type ) using UE::Platform::##type
 
-namespace J
+namespace UE
 {
 
 	// signed integer types
 
-	DECLARE_PLATFORM_TYPE(int8);
-	DECLARE_PLATFORM_TYPE(int16);
-	DECLARE_PLATFORM_TYPE(int32);
-	DECLARE_PLATFORM_TYPE(int64);
+	DECLARE_PLATFORM_TYPE( int8 );
+	DECLARE_PLATFORM_TYPE( int16 );
+	DECLARE_PLATFORM_TYPE( int32 );
+	DECLARE_PLATFORM_TYPE( int64 );
 
 	// unsigned integer types
 
-	DECLARE_PLATFORM_TYPE(uint8);
-	DECLARE_PLATFORM_TYPE(uint16);
-	DECLARE_PLATFORM_TYPE(uint32);
-	DECLARE_PLATFORM_TYPE(uint64);
+	DECLARE_PLATFORM_TYPE( uint8 );
+	DECLARE_PLATFORM_TYPE( uint16 );
+	DECLARE_PLATFORM_TYPE( uint32 );
+	DECLARE_PLATFORM_TYPE( uint64 );
 
 	// other types
 
-	DECLARE_PLATFORM_TYPE(byte);
+	DECLARE_PLATFORM_TYPE( byte );
 
-	DECLARE_PLATFORM_TYPE(SIZE_T);
+	DECLARE_PLATFORM_TYPE( SIZE_T );
 
-	DECLARE_PLATFORM_TYPE(ANSICHAR);
-	DECLARE_PLATFORM_TYPE(WIDECHAR);
+	DECLARE_PLATFORM_TYPE( ANSICHAR );
+	DECLARE_PLATFORM_TYPE( UNICHAR );
 
-	DECLARE_PLATFORM_TYPE(CHAR16);
-	DECLARE_PLATFORM_TYPE(CHAR32);
+	DECLARE_PLATFORM_TYPE( CHAR16 );
+	DECLARE_PLATFORM_TYPE( CHAR32 );
 
-	DECLARE_PLATFORM_TYPE(CHAR);
-	DECLARE_PLATFORM_TYPE(UCHAR);
+	DECLARE_PLATFORM_TYPE( CHAR );
+	DECLARE_PLATFORM_TYPE( UCHAR );
 
-	DECLARE_PLATFORM_TYPE(NullPtrType);
+	DECLARE_PLATFORM_TYPE( NullPtrType );
 
-	DECLARE_PLATFORM_TYPE(MemPtr);
-	DECLARE_PLATFORM_TYPE(CMemPtr);
-	DECLARE_PLATFORM_TYPE(MemCPtr);
-	DECLARE_PLATFORM_TYPE(CMemCPtr);
+	DECLARE_PLATFORM_TYPE( MemPtr );
+	DECLARE_PLATFORM_TYPE( CMemPtr );
+	DECLARE_PLATFORM_TYPE( MemCPtr );
+	DECLARE_PLATFORM_TYPE( CMemCPtr );
 
 }

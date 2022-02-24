@@ -5,7 +5,7 @@
 #include <compare>
 
 
-namespace J
+namespace UE
 {
 	
 	/**
@@ -32,12 +32,12 @@ namespace J
 			float Value;
 		};
 
-		Float32() : Value(0) { };
-		Float32(float InValue) : Value(InValue) { }
+		Float32() : Value( 0 ) { };
+		Float32( float InValue ) : Value( InValue ) { }
 
 		operator float() const;
 
-		auto operator <=> (const Float32& another) const = default;		// automatically generates all six comparison operators
+		auto operator <=> ( const Float32& another ) const = default;		// automatically generates all six comparison operators
 	};
 
 
